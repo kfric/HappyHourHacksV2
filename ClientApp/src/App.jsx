@@ -19,13 +19,13 @@ export function App() {
         <Route exact path="/sign-up">
           <SignUp />
         </Route>
-        <Route exact path="/restaurants">
+        <Route exact path="/bars">
           <Bars />
         </Route>
         <Route exact path="/details/:id">
           <Details />
         </Route>
-        <Route exact path="/add-restaurant">
+        <Route exact path="/add-bar">
           <AddBar />
         </Route>
         <Route exact path="*">
