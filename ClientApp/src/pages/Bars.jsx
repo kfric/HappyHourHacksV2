@@ -10,38 +10,50 @@ function navbarClick() {
 
 export function Bars() {
   return (
-    <div>
-      <div className="hero is-primary">
+    <div className="container">
+      <div className="column">
         <div className="field is-grouped pt-2">
           <a className="navbar-burger" onClick={navbarClick}>
             <span></span>
             <span></span>
             <span></span>
           </a>
-          <div className="navbar-menu" id="nav-links">
-            <div class="navbar-start">
-              {/* <a className="navbar-item">Home</a> */}
-              <a className="navbar-item">Sign out</a>
-              <a
-                href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
-                className="navbar-item"
-              >
-                About
-              </a>
+          <div className="container">
+            <div className="container mr-3">
+              <div className="control has-icons-left">
+                <input
+                  className="input is-rounded"
+                  type="text"
+                  placeholder="Search..."
+                />
+                <span className="icon is small is-left">
+                  <i className="fas fa-search"></i>
+                </span>
+              </div>
+            </div>
+            <div className="navbar-menu" id="nav-links">
+              <div class="navbar-start">
+                {/* <a className="navbar-item">Home</a> */}
+                <a className="navbar-item">Sign out</a>
+                <a
+                  href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
+                  className="navbar-item"
+                >
+                  About
+                </a>
+              </div>
             </div>
           </div>
-          <div className="container mr-3">
-            <div className="control has-icons-left">
-              <input
-                className="input is-rounded"
-                type="text"
-                placeholder="Search..."
-              />
-              <span className="icon is small is-left">
-                <i className="fas fa-search"></i>
-              </span>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="field is-grouped mt-1">
+          <Link to="/add-bar" class="button is-medium is-fullwidth is-link">
+            Add
+          </Link>
+          <Link to="#" class="button is-medium is-fullwidth is-danger">
+            Random
+          </Link>
         </div>
       </div>
       <section className="section is-fullheight">
