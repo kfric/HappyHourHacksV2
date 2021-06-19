@@ -1,44 +1,36 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export function PageNotFound() {
-  function handleDropDownClick() {
-    const navbarMenu = document.querySelector('#drop')
-    navbarMenu.classList.toggle('is-active')
-  }
-
   return (
-    <div class="dropdown" id="drop">
-      <div class="dropdown-trigger">
-        <button
-          onClick={handleDropDownClick}
-          class="button"
-          aria-haspopup="true"
-          aria-controls="dropdown-menu"
-        >
-          <span>Dropdown button</span>
-          <span class="icon is-small">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </button>
-      </div>
-      <div class="dropdown-menu" id="dropdown-menu" role="menu">
-        <div class="dropdown-content">
-          <a href="#" class="dropdown-item">
-            Dropdown item
-          </a>
-          <a class="dropdown-item">Other dropdown item</a>
-          <a href="#" class="dropdown-item is-active">
-            Active dropdown item
-          </a>
-          <a href="#" class="dropdown-item">
-            Other dropdown item
-          </a>
-          <hr class="dropdown-divider" />
-          <a href="#" class="dropdown-item">
-            With a divider
-          </a>
+    <div>
+      <section class="hero is-fullheight">
+        <div className="notification is-primary has-text-centered is-size-3">
+          Happy Hour Hacks
         </div>
-      </div>
+        <div className="has-text-centered is-size-4">404 Not Found</div>
+        <div className="container">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns is-centered">
+                <div className="column">
+                  <form action=" className='box">
+                    <div className="field has-text-centered">
+                      Nothing here...
+                    </div>
+                    <div className="field has-text-centered">Try this</div>
+                    <Link to="/" className="button is-large is-link">
+                      Happy Hour Hacks Home
+                    </Link>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
+
+export default PageNotFound
