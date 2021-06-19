@@ -1,6 +1,7 @@
 import React from 'react'
-import 'bulma/css/bulma.min.css'
 import { Link } from 'react-router-dom'
+
+import 'bulma/css/bulma.min.css'
 
 export function SignIn() {
   return (
@@ -21,7 +22,7 @@ export function SignIn() {
                         <div className="control">
                           <input
                             type="email"
-                            placeholder="e.g. tom.s@gmail.com"
+                            placeholder="e.g. harry.p@gmail.com"
                             className="input"
                             required
                           />
@@ -38,17 +39,8 @@ export function SignIn() {
                           />
                         </div>
                       </label>
-                      <div class="field is-grouped">
-                        <p class="control">
-                          <button class="button is-primary">Login</button>
-                        </p>
-                        <p class="control">
-                          <Link to="./bars">
-                            <button class="button is-info">
-                              Continue as guest
-                            </button>
-                          </Link>
-                        </p>
+                      <div className="container">
+                        <button class="button is-primary">Login</button>
                       </div>
                       <div className="field is-grouped">
                         <div className="control">
