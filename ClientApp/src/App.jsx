@@ -32,6 +32,9 @@ export function App() {
           <PageNotFound />
         </Route>
       </Switch>
+      <div className="content has-text-centered">
+        <p>Created by Karl Frick in St.Petersburg, FL</p>
+      </div>
     </>
   )
 }

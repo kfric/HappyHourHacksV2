@@ -10,6 +10,7 @@ export function SignIn() {
         <div className="notification is-primary has-text-centered is-size-3">
           Happy Hour Hacks
         </div>
+        <div className="has-text-centered is-size-4">Sign in</div>
         <div className="container">
           <div className="hero-body">
             <div className="container">
@@ -39,8 +40,8 @@ export function SignIn() {
                           />
                         </div>
                       </label>
-                      <div className="container">
-                        <button class="button is-primary">Login</button>
+                      <div className="container has-text-centered">
+                        <button class="button is-primary m-2">Login</button>
                       </div>
                       <div className="field is-grouped">
                         <div className="control">
@@ -56,16 +57,11 @@ export function SignIn() {
                         <p className="has-text-centered">Continue as guest</p>
                       </Link>
                     </div>
-                    {/* </div> */}
                   </form>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="content has-text-centered">
-          <p>Created by Karl Frick in St.Petersburg, FL</p>
         </div>
       </section>
     </div>

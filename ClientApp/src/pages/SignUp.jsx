@@ -61,9 +61,9 @@ export function SignUp() {
                           />
                         </div>
                       </label>
-                      <div class="field is-grouped">
+                      <div class="container has-text-centered">
                         <p class="control">
-                          <button class="button is-primary">Submit</button>
+                          <button class="button is-primary m-2">Submit</button>
                         </p>
                       </div>
                       <div className="field is-grouped">
@@ -80,16 +80,11 @@ export function SignUp() {
                         <p className="has-text-centered">Continue as guest</p>
                       </Link>
                     </div>
-                    {/* </div> */}
                   </form>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="content has-text-centered">
-          <p>Created by Karl Frick in St.Petersburg, FL</p>
         </div>
       </section>
     </div>

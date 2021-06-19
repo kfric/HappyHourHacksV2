@@ -85,6 +85,14 @@ export function AddBar() {
                               required
                             >
                               <div class="dropdown-content">
+                                <div class="dropdown-item">American</div>
+                                <div class="dropdown-item">BBQ</div>
+                                <div class="dropdown-item">Brazillian</div>
+                                <div class="dropdown-item">Bar & Grill</div>
+                                <div class="dropdown-item">Chinese</div>
+                                <div class="dropdown-item">Food Truck</div>
+                                <div class="dropdown-item">Kitchen</div>
+                                <div class="dropdown-item">Korean</div>
                                 <div class="dropdown-item">Beer Hall</div>
                                 <div class="dropdown-item">Brewery</div>
                                 <div class="dropdown-item">Cocktail Lounge</div>
@@ -98,12 +106,16 @@ export function AddBar() {
                                 <div class="dropdown-item">Irish Pub</div>
                                 <div class="dropdown-item">karaoke Bar</div>
                                 <div class="dropdown-item">Lounge</div>
+                                <div class="dropdown-item">Mexican</div>
                                 <div class="dropdown-item">Music Bar</div>
                                 <div class="dropdown-item">Nightclub</div>
                                 <div class="dropdown-item">Pub</div>
                                 <div class="dropdown-item">Sports Bar</div>
+                                <div class="dropdown-item">Steak House</div>
                                 <div class="dropdown-item">Wine Bar</div>
+                                <div class="dropdown-item">Tavern</div>
                                 <div class="dropdown-item">Tap House</div>
+                                <div class="dropdown-item">Vietnamese</div>
                                 <hr class="dropdown-divider" />
                                 <div class="dropdown-item">Other</div>
                               </div>
@@ -116,31 +128,31 @@ export function AddBar() {
                         <label className="label">Deal day(s)</label>
                         <div className="field is-grouped">
                           <div className="column-2">
-                            Sun
+                            Su
                             <input type="checkbox" className="checkbox" />
                           </div>
                           <div className="column-2">
-                            Mon
+                            Mo
                             <input type="checkbox" className="checkbox" />
                           </div>
                           <div className="column-2">
-                            Tue
+                            Tu
                             <input type="checkbox" className="checkbox" />
                           </div>
                           <div className="column-2">
-                            Wed
+                            We
                             <input type="checkbox" className="checkbox" />
                           </div>
                           <div className="column-2">
-                            Thu
+                            Th
                             <input type="checkbox" className="checkbox" />
                           </div>
                           <div className="column-2">
-                            Fri
+                            Fr
                             <input type="checkbox" className="checkbox" />
                           </div>
                           <div className="column-2">
-                            Sat
+                            S
                             <input type="checkbox" className="checkbox" />
                           </div>
                         </div>
@@ -158,9 +170,14 @@ export function AddBar() {
                         </div>
                       </label>
                       <div class="field is-grouped">
-                        <p class="control">
+                        <div class="container">
                           <button class="button is-primary">Submit</button>
-                        </p>
+                        </div>
+                        <div class="container has-text-right">
+                          <Link to="/bars" class="button is-danger">
+                            Cancel
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </form>
@@ -168,9 +185,6 @@ export function AddBar() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="content has-text-centered">
-          <p>Created by Karl Frick in St.Petersburg, FL</p>
         </div>
       </section>
     </div>
