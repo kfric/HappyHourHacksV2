@@ -21,3 +21,15 @@ body {
 img {
   border-radius: 6px;
 }
+
+.tile-2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-height: -webkit-min-content;
+  min-height: -moz-min-content;
+  min-height: min-content;
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import 'bulma/css/bulma.min.css'
@@ -9,6 +9,8 @@ function navbarClick() {
 }
 
 export function Bars() {
+  const [bars, setBars] = useState([])
+
   return (
     <div className="container">
       <div className="column">
@@ -33,7 +35,6 @@ export function Bars() {
             </div>
             <div className="navbar-menu" id="nav-links">
               <div class="navbar-start">
-                {/* <a className="navbar-item">Home</a> */}
                 <a className="navbar-item">Sign out</a>
                 <a
                   href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
@@ -46,54 +47,56 @@ export function Bars() {
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="field is-grouped mt-1">
-          <Link to="/add-bar" class="button is-medium is-fullwidth is-link">
-            Add
-          </Link>
-          <Link to="#" class="button is-medium is-fullwidth is-danger">
-            Random
-          </Link>
-        </div>
+      <div className="field is-grouped mt-1">
+        <Link to="/add-bar" class="button is-medium is-fullwidth is-link">
+          Add
+        </Link>
+        <Link to="#" class="button is-medium is-fullwidth is-danger">
+          Random
+        </Link>
       </div>
       <section className="section is-fullheight">
-        <div className="container">
-          <div class="tile is-ancestor">
-            <div className="tile is-4 is-vertical is-parent">
-              <Link to="/details/1" class="tile is-child box has-text-centered">
-                <p className="title">Cycle Brew</p>
-                <p>5 stars</p>
-              </Link>
-              <Link
-                to="/details/1"
-                className="tile is-child box has-text-centered"
-              >
-                <p className="title">MacDintons</p>
-                <p>3 stars</p>
-              </Link>
-            </div>
-            <div className="tile is-4 is-vertical is-parent">
-              <Link to="/details/1" class="tile is-child box has-text-centered">
-                <p class="title">Yard of Ale</p>
-                <p>4 stars</p>
-              </Link>
-              <Link to="/details/1" class="tile is-child box has-text-centered">
-                <p class="title">Grand Central Brewery</p>
-                <p>5 stars</p>
-              </Link>
-            </div>
-            <div class="tile is-4 is-vertical is-parent ">
-              <Link to="/details/1" class="tile is-child box has-text-centered">
-                <p class="title">Cocktail</p>
-                <p>5 stars</p>
-              </Link>
-              <Link to="/details/1" class="tile is-child box has-text-centered">
-                <p class="title">Hyde Park</p>
-                <p>4 stars</p>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
+          <li className="container m-2">
+            <Link to="/details/1" class="tile is-child box has-text-centered">
+              <p className="title">Cycle Brew</p>
+              <p>5 stars</p>
+            </Link>
+          </li>
+          <li className="container m-2">
+            <Link
+              to="/details/1"
+              className="tile is-child box has-text-centered"
+            >
+              <p className="title">MacDintons</p>
+              <p>3 stars</p>
+            </Link>
+          </li>
+          <li className="container m-2">
+            <Link to="/details/1" class="tile is-child box has-text-centered">
+              <p class="title">Yard of Ale</p>
+              <p>4 stars</p>
+            </Link>
+          </li>
+          <li className="container m-2">
+            <Link to="/details/1" class="tile is-child box has-text-centered">
+              <p class="title">Grand Central Brewery</p>
+              <p>5 stars</p>
+            </Link>
+          </li>
+          <li className="container m-2">
+            <Link to="/details/1" class="tile is-child box has-text-centered">
+              <p class="title">Cocktail</p>
+              <p>5 stars</p>
+            </Link>
+          </li>
+          <li className="container m-2">
+            <Link to="/details/1" class="tile is-child box has-text-centered">
+              <p class="title">Hyde Park</p>
+              <p>4 stars</p>
+            </Link>
+          </li>
+        </ul>
       </section>
     </div>
   )
