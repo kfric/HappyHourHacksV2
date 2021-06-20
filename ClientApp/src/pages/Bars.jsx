@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import 'bulma/css/bulma.min.css'
@@ -10,6 +10,19 @@ function navbarClick() {
 
 export function Bars() {
   const [bars, setBars] = useState([])
+
+  useEffect(function () {
+    async function loadBars() {
+      const response = await fetch('/api/Bars')
+
+      if (response.ok) {
+        const json = await response.json()
+        setBars(json)
+      }
+    }
+
+    loadBars()
+  }, [])
 
   return (
     <div className="container">
@@ -57,45 +70,14 @@ export function Bars() {
       </div>
       <section className="section is-fullheight">
         <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
-          <li className="container m-2">
-            <Link to="/details/1" class="tile is-child box has-text-centered">
-              <p className="title">Cycle Brew</p>
-              <p>5 stars</p>
-            </Link>
-          </li>
-          <li className="container m-2">
-            <Link
-              to="/details/1"
-              className="tile is-child box has-text-centered"
-            >
-              <p className="title">MacDintons</p>
-              <p>3 stars</p>
-            </Link>
-          </li>
-          <li className="container m-2">
-            <Link to="/details/1" class="tile is-child box has-text-centered">
-              <p class="title">Yard of Ale</p>
-              <p>4 stars</p>
-            </Link>
-          </li>
-          <li className="container m-2">
-            <Link to="/details/1" class="tile is-child box has-text-centered">
-              <p class="title">Grand Central Brewery</p>
-              <p>5 stars</p>
-            </Link>
-          </li>
-          <li className="container m-2">
-            <Link to="/details/1" class="tile is-child box has-text-centered">
-              <p class="title">Cocktail</p>
-              <p>5 stars</p>
-            </Link>
-          </li>
-          <li className="container m-2">
-            <Link to="/details/1" class="tile is-child box has-text-centered">
-              <p class="title">Hyde Park</p>
-              <p>4 stars</p>
-            </Link>
-          </li>
+          {bars.map((bar) => (
+            <li className="container m-2">
+              <Link to="/details/1" class="tile is-child box has-text-centered">
+                <p className="title">{bar.name}</p>
+                <p>5 stars</p>
+              </Link>
+            </li>
+          ))}
         </ul>
       </section>
     </div>
