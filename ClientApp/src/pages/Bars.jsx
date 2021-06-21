@@ -72,7 +72,7 @@ export function Bars() {
           </div>
         </div>
       </div>
-      <div className="field is-grouped mt-1">
+      <div className="field is-grouped mt-1 mb-0">
         <Link to="/add-bar" className="button is-medium is-fullwidth is-link">
           Add
         </Link>
@@ -80,7 +80,7 @@ export function Bars() {
           Random
         </Link>
       </div>
-      <section className="section is-fullheight">
+      <section className="section is-fullheight pt-3">
         <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
           {bars.map((bar) => (
             <li className="container m-2" key={bar.id}>

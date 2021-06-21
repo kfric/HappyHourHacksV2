@@ -1,12 +1,37 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 export function AddBar() {
-  const [styleSelection, setStyleSelection] = useState()
+  const [newBar, setNewBar] = useState({
+    name: '',
+    phone: '',
+    address: '',
+    website: '',
+    style: '',
+  })
 
-  function handleDropDownClick() {
-    const navbarMenu = document.querySelector('#drop')
-    navbarMenu.classList.toggle('is-active')
+  const history = useHistory()
+
+  function handleStringFieldChange(event) {
+    const value = event.target.value
+    const fieldName = event.target.name
+
+    const updateBar = { ...newBar, [fieldName]: value }
+    setNewBar(updateBar)
+  }
+
+  async function handleFormSubmit(event) {
+    event.preventDefault()
+
+    const response = await fetch('/api/Bars', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newBar),
+    })
+
+    if (response.ok) {
+      history.push('bars')
+    }
   }
 
   return (
@@ -21,7 +46,7 @@ export function AddBar() {
             <div className="container">
               <div className="columns is-centered">
                 <div className="column">
-                  <form action=" className='box">
+                  <form onSubmit={handleFormSubmit}>
                     <div className="field">
                       <label className="label">
                         Bar name
@@ -30,17 +55,9 @@ export function AddBar() {
                             type="text"
                             placeholder="e.g. Harry's Bar"
                             className="input"
-                            required
-                          />
-                        </div>
-                      </label>
-                      <label className="label">
-                        Address
-                        <div className="control">
-                          <input
-                            type="text"
-                            placeholder="e.g. 123 45th N Somewhere, ST 67890"
-                            className="input"
+                            value={newBar.name}
+                            name="name"
+                            onChange={handleStringFieldChange}
                             required
                           />
                         </div>
@@ -52,6 +69,23 @@ export function AddBar() {
                             type="tel"
                             placeholder="e.g. 111-222-3333"
                             className="input"
+                            value={newBar.phone}
+                            name="phone"
+                            onChange={handleStringFieldChange}
+                            required
+                          />
+                        </div>
+                      </label>
+                      <label className="label">
+                        Address
+                        <div className="control">
+                          <input
+                            type="text"
+                            placeholder="e.g. 123 45th N Somewhere, ST 67890"
+                            className="input"
+                            value={newBar.address}
+                            name="address"
+                            onChange={handleStringFieldChange}
                             required
                           />
                         </div>
@@ -60,85 +94,63 @@ export function AddBar() {
                         Website
                         <div className="control">
                           <input
-                            type="url"
+                            type="text"
                             placeholder="e.g. harrysbar@gmail.com"
                             className="input"
+                            value={newBar.website}
+                            name="website"
+                            onChange={handleStringFieldChange}
                             required
                           />
                         </div>
                       </label>
                       <label className="label">
-                        Bar Style
+                        Style
                         <div className="control">
-                          <div className="dropdown" id="drop">
-                            <div className="dropdown-trigger">
-                              <input
-                                onClick={handleDropDownClick}
-                                className="button has-text-left"
-                                aria-haspopup="true"
-                                aria-controls="dropdown-menu"
-                                placeholder="Select one"
-                                value={styleSelection}
-                              />
-                            </div>
-                            <div
-                              className="dropdown-menu"
-                              id="dropdown-menu"
-                              role="menu"
-                              required
-                            >
-                              <div className="dropdown-content">
-                                <div
-                                  className="dropdown-item"
-                                  onClick={function (event) {
-                                    setStyleSelection(event.target.value)
-                                  }}
-                                >
-                                  American
-                                </div>
-                                <div className="dropdown-item">BBQ</div>
-                                <div className="dropdown-item">Brazillian</div>
-                                <div className="dropdown-item">Bar & Grill</div>
-                                <div className="dropdown-item">Chinese</div>
-                                <div className="dropdown-item">Food Truck</div>
-                                <div className="dropdown-item">Kitchen</div>
-                                <div className="dropdown-item">Korean</div>
-                                <div className="dropdown-item">Beer Hall</div>
-                                <div className="dropdown-item">Brewery</div>
-                                <div className="dropdown-item">
-                                  Cocktail Lounge
-                                </div>
-                                <div className="dropdown-item is-active">
-                                  Dive Bar
-                                </div>
-                                <div className="dropdown-item">Hotel Bar</div>
-                                <div className="dropdown-item">
-                                  Hole in the Wall
-                                </div>
-                                <div className="dropdown-item">Irish Pub</div>
-                                <div className="dropdown-item">karaoke Bar</div>
-                                <div className="dropdown-item">Lounge</div>
-                                <div className="dropdown-item">Mexican</div>
-                                <div className="dropdown-item">Music Bar</div>
-                                <div className="dropdown-item">Nightclub</div>
-                                <div className="dropdown-item">Pub</div>
-                                <div className="dropdown-item">Sports Bar</div>
-                                <div className="dropdown-item">Steak House</div>
-                                <div className="dropdown-item">Wine Bar</div>
-                                <div className="dropdown-item">Tavern</div>
-                                <div className="dropdown-item">Tap House</div>
-                                <div className="dropdown-item">Vietnamese</div>
-                                <hr className="dropdown-divider" />
-                                <div className="dropdown-item">Other</div>
-                              </div>
-                            </div>
-                          </div>
+                          <select
+                            className="button has-text-left"
+                            value={newBar.style}
+                            name="style"
+                            onChange={handleStringFieldChange}
+                            required
+                          >
+                            <option value="American">American</option>
+                            <option value="BBQ">BBQ</option>
+                            <option value="Brazilian">Brazilian</option>
+                            <option value="bar & Grill">bar & Grill</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Food Truck">Food Truck</option>
+                            <option value="Kitchen">Kitchen</option>
+                            <option value="Korean">Korean</option>
+                            <option value="Beer Hall">Beer Hall</option>
+                            <option value="Brewery">Brewery</option>
+                            <option value="Cocktail Lounge">
+                              Cocktail Lounge
+                            </option>
+                            <option value="Dive Bar">Dive Bar</option>
+                            <option value="Hotel Bar">Hotel Bar</option>
+                            <option value="Hole in the wall">
+                              Hole in the wall
+                            </option>
+                            <option value="Irish Pub">Irish Pub</option>
+                            <option value="Karaoke Bar">Karaoke Bar</option>
+                            <option value="Lounge">Lounge</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Music Bar">Music Bar</option>
+                            <option value="Night Club">Night Club</option>
+                            <option value="Pub">Pub</option>
+                            <option value="Sports Bar">Sports Bar</option>
+                            <option value="Steak House">Steak House</option>
+                            <option value="Wine Bar">Wine Bar</option>
+                            <option value="Tavern">Tavern</option>
+                            <option value="Tap House">Tap House</option>
+                            <option value="Vietnamese">Vietnamese</option>
+                            <option value="Other">Other</option>
+                          </select>
                         </div>
                       </label>
                       <div className="field is-grouped">
-                        <div className="container">
-                          <button className="button is-primary">Submit</button>
-                        </div>
+                        <button className="button is-primary">Submit</button>
                         <div className="container has-text-right">
                           <Link to="/bars" className="button is-danger">
                             Cancel
