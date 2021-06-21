@@ -15,7 +15,7 @@ export function AddBar() {
         <div className="notification is-primary has-text-centered is-size-3">
           Happy Hour Hacks
         </div>
-        <div className="container is-size-4">Add Bar</div>
+        <div className="subtitle has-text-centered">Add Bar</div>
         <div className="container">
           <div className="hero-body pt-0">
             <div className="container">
@@ -133,52 +133,6 @@ export function AddBar() {
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </label>
-                      {/* ********************* */}
-                      <div className="container">
-                        <label className="label">Deal day(s)</label>
-                        <div className="field is-grouped">
-                          <div className="column-2">
-                            Su
-                            <input type="checkbox" className="checkbox" />
-                          </div>
-                          <div className="column-2">
-                            Mo
-                            <input type="checkbox" className="checkbox" />
-                          </div>
-                          <div className="column-2">
-                            Tu
-                            <input type="checkbox" className="checkbox" />
-                          </div>
-                          <div className="column-2">
-                            We
-                            <input type="checkbox" className="checkbox" />
-                          </div>
-                          <div className="column-2">
-                            Th
-                            <input type="checkbox" className="checkbox" />
-                          </div>
-                          <div className="column-2">
-                            Fr
-                            <input type="checkbox" className="checkbox" />
-                          </div>
-                          <div className="column-2">
-                            S
-                            <input type="checkbox" className="checkbox" />
-                          </div>
-                        </div>
-                      </div>
-                      {/* ********************* */}
-                      <label className="label">
-                        Deal details
-                        <div className="control">
-                          <textarea
-                            type="text"
-                            placeholder="Tell us about the deal"
-                            className="input"
-                            required
-                          />
                         </div>
                       </label>
                       <div className="field is-grouped">

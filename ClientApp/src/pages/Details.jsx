@@ -97,6 +97,11 @@ export function Details() {
               </div>
             </div>
             <div className="tile is-parent">
+              <div className="tile is-child box has-text-centered">
+                <div className="title">ADD</div>
+              </div>
+            </div>
+            <div className="tile is-parent">
               <img src={GCB} alt="bar" />
             </div>
             <div className="tile is-parent">

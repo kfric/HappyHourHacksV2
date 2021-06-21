@@ -88,7 +88,7 @@ export function Bars() {
                 to="/details/1"
                 className="tile is-child box has-text-centered"
               >
-                <p className="title">{bar.name}</p>
+                <p className="subtitle has-text-centered">{bar.name}</p>
                 <p>5 stars</p>
               </Link>
             </li>

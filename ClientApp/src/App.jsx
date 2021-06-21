@@ -7,6 +7,7 @@ import { SignUp } from './pages/SignUp'
 import { Bars } from './pages/Bars'
 import { Details } from './pages/Details'
 import { AddBar } from './pages/AddBar'
+import { AddDeal } from './pages/AddDeal'
 import { PageNotFound } from './pages/PageNotFound'
 
 export function App() {
@@ -27,6 +28,9 @@ export function App() {
         </Route>
         <Route exact path="/add-bar">
           <AddBar />
+        </Route>
+        <Route exact path="/add-deal">
+          <AddDeal />
         </Route>
         <Route exact path="*">
           <PageNotFound />
