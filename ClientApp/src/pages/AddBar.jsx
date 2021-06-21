@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function AddBar() {
+  const [styleSelection, setStyleSelection] = useState()
+
   function handleDropDownClick() {
     const navbarMenu = document.querySelector('#drop')
     navbarMenu.classList.toggle('is-active')
@@ -72,10 +74,11 @@ export function AddBar() {
                             <div className="dropdown-trigger">
                               <input
                                 onClick={handleDropDownClick}
-                                class="button has-text-left"
+                                className="button has-text-left"
                                 aria-haspopup="true"
                                 aria-controls="dropdown-menu"
                                 placeholder="Select one"
+                                value={styleSelection}
                               />
                             </div>
                             <div
@@ -85,7 +88,14 @@ export function AddBar() {
                               required
                             >
                               <div className="dropdown-content">
-                                <div className="dropdown-item">American</div>
+                                <div
+                                  className="dropdown-item"
+                                  onClick={function (event) {
+                                    setStyleSelection(event.target.value)
+                                  }}
+                                >
+                                  American
+                                </div>
                                 <div className="dropdown-item">BBQ</div>
                                 <div className="dropdown-item">Brazillian</div>
                                 <div className="dropdown-item">Bar & Grill</div>

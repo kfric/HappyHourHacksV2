@@ -42,7 +42,6 @@ namespace HappyHourHacksV2.Controllers
             else
             {
                 return await _context.Bars.Where(bar => bar.Name.ToLower().Contains(filter.ToLower()) ||
-                                                        bar.Phone.ToLower().Contains(filter.ToLower()) ||
                                                         bar.Address.ToLower().Contains(filter.ToLower()) ||
                                                         bar.Style.ToLower().Contains(filter.ToLower())).ToListAsync();
             }
