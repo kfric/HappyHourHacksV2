@@ -108,31 +108,39 @@ export function Details() {
               </div>
             </div>
           </div>
-          <div className="tile is-ancestor">
-            <div className="tile is-parent">
-              <div className="tile is-child box">
-                <p className="subtitle">Mo, Tu, We, Th, Fr</p>
-                <p>2 for $20 Entrees</p>
-              </div>
-            </div>
-            <div className="tile is-parent">
-              <div className="tile is-child box">
-                <p className="subtitle">Su, Mo, Tu, We, Th, Fr, S</p>
-                <p>BOGO select drinks!</p>
-              </div>
-            </div>
-            <div className="tile is-parent">
-              <div className="tile is-child box has-text-centered">
-                <div className="title">ADD</div>
-              </div>
-            </div>
-            <div className="tile is-parent">
+          <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
+            <li className="box has-text-centered m-2">
+              <p className="subtitle">Mo, Tu, We, Th, Fr</p>
+              <p>2 for $20 Entrees</p>
+            </li>
+            <li className="box has-text-centered m-2">
+              <p className="subtitle">Su, Mo, Tu, We, Th, Fr, S</p>
+              <p>BOGO select drinks!</p>
+            </li>
+            <li className="box has-text-centered m-2">
+              <p>+ Deal</p>
+            </li>
+            <li className="box has-text-centered m-2">
+              <p className="subtitle">Friendly staff</p>
+              <p>Everyone was v happy to work there!</p>
+            </li>
+            <li className="box has-text-centered m-2">
+              <p className="subtitle">Clean bathroom</p>
+              <p>The bathrooms are cleeeeeaaan</p>
+            </li>
+            <li className="box has-text-centered m-2">
+              <p>+ Review</p>
+            </li>
+            <li>
               <img src={GCB} alt="bar" />
-            </div>
-            <div className="tile is-parent">
+            </li>
+            <li>
               <img src={GCB2} alt="bar" />
-            </div>
-          </div>
+            </li>
+            <li className="box has-text-centered m-2">
+              <p>+ img</p>
+            </li>
+          </ul>
         </div>
       </section>
     </div>

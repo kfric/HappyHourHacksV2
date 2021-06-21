@@ -84,10 +84,7 @@ export function Bars() {
         <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
           {bars.map((bar) => (
             <li className="container m-2" key={bar.id}>
-              <Link
-                to={`/details/${bar.id}`}
-                className="tile is-child box has-text-centered"
-              >
+              <Link to={`/details/${bar.id}`} className="box has-text-centered">
                 <p className="subtitle has-text-centered">{bar.name}</p>
                 <span
                   className="stars"
