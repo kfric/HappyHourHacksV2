@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 import maps from '../images/maps.jpeg'
 import GCB from '../images/GCB.jpg'
@@ -11,6 +11,31 @@ function navbarClick() {
 }
 
 export function Details() {
+  const params = useParams()
+  const id = params.id
+
+  const [bar, setBar] = useState({
+    name: '',
+    phone: '',
+    address: '',
+    website: '',
+    style: '',
+  })
+
+  useEffect(() => {
+    async function fetchBar() {
+      const response = await fetch(`/api/Bars/${id}`)
+
+      if (response.ok) {
+        const apiData = await response.json()
+
+        setBar(apiData)
+      }
+    }
+
+    fetchBar()
+  }, [id])
+
   return (
     <div className="container">
       <div className="column">
@@ -59,7 +84,7 @@ export function Details() {
         </div>
       </div>
       <div className="container is-size-4 has-text-centered m-5">
-        Grand Central Brewery
+        {bar.name}
       </div>
       <section className="section is-fullheight pt-0">
         <div className="container">

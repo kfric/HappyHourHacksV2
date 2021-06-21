@@ -85,11 +85,16 @@ export function Bars() {
           {bars.map((bar) => (
             <li className="container m-2" key={bar.id}>
               <Link
-                to="/details/1"
+                to={`/details/${bar.id}`}
                 className="tile is-child box has-text-centered"
               >
                 <p className="subtitle has-text-centered">{bar.name}</p>
-                <p>5 stars</p>
+                <span
+                  className="stars"
+                  style={{ '--rating': 4.7 }}
+                  ariel-label="Star rating of this location"
+                />
+                (28)
               </Link>
             </li>
           ))}
