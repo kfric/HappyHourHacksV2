@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export function PageNotFound() {
   return (
     <div>
-      <section class="hero is-fullheight">
+      <section className="hero is-fullheight">
         <div className="notification is-primary has-text-centered is-size-3">
           Happy Hour Hacks
         </div>

@@ -34,7 +34,7 @@ export function Details() {
               </div>
             </div>
             <div className="navbar-menu" id="nav-links">
-              <div class="navbar-start">
+              <div className="navbar-start">
                 {/* <a className="navbar-item">Home</a> */}
                 <a className="navbar-item">Sign out</a>
                 <a
@@ -50,10 +50,10 @@ export function Details() {
       </div>
       <div className="container">
         <div className="field is-grouped mt-1">
-          <Link to="/add-bar" class="button is-medium is-fullwidth is-link">
+          <Link to="/add-bar" className="button is-medium is-fullwidth is-link">
             Add
           </Link>
-          <Link to="#" class="button is-medium is-fullwidth is-danger">
+          <Link to="#" className="button is-medium is-fullwidth is-danger">
             Random
           </Link>
         </div>
@@ -64,8 +64,8 @@ export function Details() {
       <section className="section is-fullheight pt-0">
         <div className="container">
           {/* new tiles*********************************************************** */}
-          <div class="tile is-ancestor">
-            <div class="tile is-parent is-8">
+          <div className="tile is-ancestor">
+            <div className="tile is-parent is-8">
               <img src={maps} alt="map to the bar location" />
             </div>
             <div className="tile is-parent is-justify-content-space-evenly is-flex-direction-column">
@@ -84,19 +84,19 @@ export function Details() {
             </div>
           </div>
           <div className="tile is-ancestor">
-            <div class="tile is-parent">
-              <div class="tile is-child box">
-                <p class="subtitle">Mo, Tu, We, Th, Fr</p>
+            <div className="tile is-parent">
+              <div className="tile is-child box">
+                <p className="subtitle">Mo, Tu, We, Th, Fr</p>
                 <p>2 for $20 Entrees</p>
               </div>
             </div>
             <div className="tile is-parent">
-              <div class="tile is-child box">
-                <p class="subtitle">Su, Mo, Tu, We, Th, Fr, S</p>
+              <div className="tile is-child box">
+                <p className="subtitle">Su, Mo, Tu, We, Th, Fr, S</p>
                 <p>BOGO select drinks!</p>
               </div>
             </div>
-            <div class="tile is-parent">
+            <div className="tile is-parent">
               <img src={GCB} alt="bar" />
             </div>
             <div className="tile is-parent">

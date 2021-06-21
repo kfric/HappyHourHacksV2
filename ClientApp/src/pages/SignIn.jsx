@@ -6,7 +6,7 @@ import 'bulma/css/bulma.min.css'
 export function SignIn() {
   return (
     <div>
-      <section class="hero is-fullheight">
+      <section className="hero is-fullheight">
         <div className="notification is-primary has-text-centered is-size-3">
           Happy Hour Hacks
         </div>
@@ -18,7 +18,7 @@ export function SignIn() {
                 <div className="column">
                   <form action=" className='box">
                     <div className="field">
-                      <label htmlFor="" className="label">
+                      <label className="label">
                         Username
                         <div className="control">
                           <input
@@ -29,7 +29,7 @@ export function SignIn() {
                           />
                         </div>
                       </label>
-                      <label htmlFor="" className="label">
+                      <label className="label">
                         Password
                         <div className="control">
                           <input

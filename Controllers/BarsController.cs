@@ -31,11 +31,21 @@ namespace HappyHourHacksV2.Controllers
         // Returns a list of all your Bars
         //
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Bar>>> GetBars()
+        public async Task<ActionResult<IEnumerable<Bar>>> GetBars(string filter)
         {
-            // Uses the database context in `_context` to request all of the Bars, sort
+            // Uses the database context in `_context` to request all of the Farms, sort
             // them by row id and return them as a JSON array.
-            return await _context.Bars.OrderBy(row => row.Id).ToListAsync();
+            if (filter == null)
+            {
+                return await _context.Bars.OrderBy(row => row.Id).ToListAsync();
+            }
+            else
+            {
+                return await _context.Bars.Where(bar => bar.Name.ToLower().Contains(filter.ToLower()) ||
+                                                        bar.Phone.ToLower().Contains(filter.ToLower()) ||
+                                                        bar.Address.ToLower().Contains(filter.ToLower()) ||
+                                                        bar.Style.ToLower().Contains(filter.ToLower())).ToListAsync();
+            }
         }
 
         // GET: api/Bars/5

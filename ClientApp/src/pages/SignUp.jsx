@@ -6,7 +6,7 @@ import 'bulma/css/bulma.min.css'
 export function SignUp() {
   return (
     <div>
-      <section class="hero is-fullheight">
+      <section className="hero is-fullheight">
         <div className="notification is-primary has-text-centered is-size-3">
           Happy Hour Hacks
         </div>
@@ -17,7 +17,7 @@ export function SignUp() {
                 <div className="column">
                   <form action=" className='box">
                     <div className="field">
-                      <label htmlFor="" className="label">
+                      <label className="label">
                         First name
                         <div className="control">
                           <input
@@ -28,7 +28,7 @@ export function SignUp() {
                           />
                         </div>
                       </label>
-                      <label htmlFor="" className="label">
+                      <label className="label">
                         Last name
                         <div className="control">
                           <input
@@ -39,7 +39,7 @@ export function SignUp() {
                           />
                         </div>
                       </label>
-                      <label htmlFor="" className="label">
+                      <label className="label">
                         Username
                         <div className="control">
                           <input
@@ -50,7 +50,7 @@ export function SignUp() {
                           />
                         </div>
                       </label>
-                      <label htmlFor="" className="label">
+                      <label className="label">
                         Password
                         <div className="control">
                           <input
@@ -61,9 +61,11 @@ export function SignUp() {
                           />
                         </div>
                       </label>
-                      <div class="container has-text-centered">
-                        <p class="control">
-                          <button class="button is-primary m-2">Submit</button>
+                      <div className="container has-text-centered">
+                        <p className="control">
+                          <button className="button is-primary m-2">
+                            Submit
+                          </button>
                         </p>
                       </div>
                       <div className="field is-grouped">

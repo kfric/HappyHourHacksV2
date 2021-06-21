@@ -10,19 +10,27 @@ function navbarClick() {
 
 export function Bars() {
   const [bars, setBars] = useState([])
+  const [searchText, setSearchText] = useState('')
 
-  useEffect(function () {
-    async function loadBars() {
-      const response = await fetch('/api/Bars')
+  useEffect(
+    function () {
+      async function loadBars() {
+        const url =
+          searchText.length === 0
+            ? '/api/Bars'
+            : `/api/Bars?filter=${searchText}`
+        const response = await fetch(url)
 
-      if (response.ok) {
-        const json = await response.json()
-        setBars(json)
+        if (response.ok) {
+          const json = await response.json()
+          setBars(json)
+        }
       }
-    }
 
-    loadBars()
-  }, [])
+      loadBars()
+    },
+    [searchText]
+  )
 
   return (
     <div className="container">
@@ -40,6 +48,10 @@ export function Bars() {
                   className="input is-rounded"
                   type="text"
                   placeholder="Search..."
+                  value={searchText}
+                  onChange={function (event) {
+                    setSearchText(event.target.value)
+                  }}
                 />
                 <span className="icon is small is-left">
                   <i className="fas fa-search"></i>
@@ -47,7 +59,7 @@ export function Bars() {
               </div>
             </div>
             <div className="navbar-menu" id="nav-links">
-              <div class="navbar-start">
+              <div className="navbar-start">
                 <a className="navbar-item">Sign out</a>
                 <a
                   href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
@@ -61,18 +73,21 @@ export function Bars() {
         </div>
       </div>
       <div className="field is-grouped mt-1">
-        <Link to="/add-bar" class="button is-medium is-fullwidth is-link">
+        <Link to="/add-bar" className="button is-medium is-fullwidth is-link">
           Add
         </Link>
-        <Link to="#" class="button is-medium is-fullwidth is-danger">
+        <Link to="#" className="button is-medium is-fullwidth is-danger">
           Random
         </Link>
       </div>
       <section className="section is-fullheight">
         <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
           {bars.map((bar) => (
-            <li className="container m-2">
-              <Link to="/details/1" class="tile is-child box has-text-centered">
+            <li className="container m-2" key={bar.id}>
+              <Link
+                to="/details/1"
+                className="tile is-child box has-text-centered"
+              >
                 <p className="title">{bar.name}</p>
                 <p>5 stars</p>
               </Link>
