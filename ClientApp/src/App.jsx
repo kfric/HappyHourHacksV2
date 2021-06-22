@@ -9,6 +9,7 @@ import { Details } from './pages/Details'
 import { AddBar } from './pages/AddBar'
 import { AddDeal } from './pages/AddDeal'
 import { PageNotFound } from './pages/PageNotFound'
+import { AddReview } from './pages/AddReview'
 
 export function App() {
   return (
@@ -31,6 +32,9 @@ export function App() {
         </Route>
         <Route exact path="/add-deal">
           <AddDeal />
+        </Route>
+        <Route exact path="/add-review">
+          <AddReview />
         </Route>
         <Route exact path="*">
           <PageNotFound />

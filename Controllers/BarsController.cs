@@ -37,13 +37,13 @@ namespace HappyHourHacksV2.Controllers
             // them by row id and return them as a JSON array.
             if (filter == null)
             {
-                return await _context.Bars.OrderBy(row => row.Id).ToListAsync();
+                return await _context.Bars.OrderBy(row => row.Id).Include(bar => bar.Reviews).ToListAsync();
             }
             else
             {
                 return await _context.Bars.Where(bar => bar.Name.ToLower().Contains(filter.ToLower()) ||
                                                         bar.Address.ToLower().Contains(filter.ToLower()) ||
-                                                        bar.Style.ToLower().Contains(filter.ToLower())).ToListAsync();
+                                                        bar.Style.ToLower().Contains(filter.ToLower())).Include(bar => bar.Reviews).ToListAsync();
             }
         }
 
@@ -57,8 +57,9 @@ namespace HappyHourHacksV2.Controllers
         public async Task<ActionResult<Bar>> GetBar(int id)
         {
             // Find the bar in the database using `FindAsync` to look it up by id
-            var bar = await _context.Bars.FindAsync(id);
-
+            // Find the restaurant in the database using Include to ensure we have the associated reviews
+            var bar = await _context.Bars.Include(bar => bar.Reviews).
+                                            Where(bar => bar.Id == id).FirstOrDefaultAsync();
             // If we didn't find anything, we receive a `null` in return
             if (bar == null)
             {

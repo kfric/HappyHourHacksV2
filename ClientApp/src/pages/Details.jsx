@@ -20,6 +20,7 @@ export function Details() {
     address: '',
     website: '',
     style: '',
+    reviews: [],
   })
 
   useEffect(() => {
@@ -38,8 +39,8 @@ export function Details() {
 
   return (
     <div className="container">
-      <div className="column">
-        <div className="field is-grouped pt-2">
+      <div className="column has-background-white-ter is-fixed-top p-5">
+        <div className="field is-grouped">
           <a className="navbar-burger" onClick={navbarClick}>
             <span></span>
             <span></span>
@@ -74,7 +75,7 @@ export function Details() {
         </div>
       </div>
       <div className="container">
-        <div className="field is-grouped mt-1">
+        <div className="field is-grouped">
           <Link to="/add-bar" className="button is-medium is-fullwidth is-link">
             Add
           </Link>
@@ -85,10 +86,10 @@ export function Details() {
       </div>
       <div className="container is-size-4 has-text-centered m-5">
         {bar.name}
+        <p className="is-size-6">({bar.reviews.length})</p>
       </div>
       <section className="section is-fullheight pt-0">
         <div className="container">
-          {/* new tiles*********************************************************** */}
           <div className="tile is-ancestor">
             <div className="tile is-parent is-8">
               <img src={maps} alt="map to the bar location" />
@@ -109,6 +110,15 @@ export function Details() {
             </div>
           </div>
           <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
+            {bar.reviews.map((review) => (
+              <li className="box has-text-centered m-2">
+                <p className="subtitle">{review.title}</p>
+                <p className="mb-1">{review.body}</p>
+                <p className="is-size-7 has-text-right">
+                  {review.creationDate}
+                </p>
+              </li>
+            ))}
             <li className="box has-text-centered m-2">
               <p className="subtitle">Mo, Tu, We, Th, Fr</p>
               <p>2 for $20 Entrees</p>
@@ -121,21 +131,13 @@ export function Details() {
               <p>+ Deal</p>
             </li>
             <li className="box has-text-centered m-2">
-              <p className="subtitle">Friendly staff</p>
-              <p>Everyone was v happy to work there!</p>
-            </li>
-            <li className="box has-text-centered m-2">
-              <p className="subtitle">Clean bathroom</p>
-              <p>The bathrooms are cleeeeeaaan</p>
-            </li>
-            <li className="box has-text-centered m-2">
               <p>+ Review</p>
             </li>
             <li>
-              <img src={GCB} alt="bar" />
+              <img src={GCB} alt="bar" className="m-2" />
             </li>
             <li>
-              <img src={GCB2} alt="bar" />
+              <img src={GCB2} alt="bar" className="m-2" />
             </li>
             <li className="box has-text-centered m-2">
               <p>+ img</p>

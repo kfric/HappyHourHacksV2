@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HappyHourHacksV2.Models
@@ -18,5 +19,7 @@ namespace HappyHourHacksV2.Models
 
         [Required]
         public string Style { get; set; }
+
+        public List<Review> Reviews { get; set; }
     }
 }
