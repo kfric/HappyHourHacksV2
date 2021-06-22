@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-
-import 'bulma/css/bulma.min.css'
+import React, { useEffect, useState } from 'react'
+import { Link, useHistory, useParams } from 'react-router-dom'
 
 export function AddReview() {
-  const [newBar, setNewBar] = useState({
-    name: '',
-    phone: '',
-    address: '',
-    website: '',
-    style: '',
+  const params = useParams()
+  const id = params.id
+
+  const [review, setReview] = useState({
+    title: '',
+    body: '',
+    stars: 0,
+    barId: id,
   })
 
   const history = useHistory()
@@ -19,29 +19,29 @@ export function AddReview() {
     const value = event.target.value
     const fieldName = event.target.name
 
-    const updateBar = { ...newBar, [fieldName]: value }
-    setNewBar(updateBar)
+    const updateReview = { ...review, [fieldName]: value }
+    setReview(updateReview)
   }
 
   async function handleFormSubmit(event) {
     event.preventDefault()
 
-    const response = await fetch('/api/Bars', {
+    const response = await fetch('/api/Reviews', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(newBar),
+      body: JSON.stringify(review),
     })
 
     if (response.ok) {
-      history.push('bars')
+      history.goBack()
     } else {
       const json = await response.json()
       setErrorMsg(Object.values(json.errors).join(' '))
     }
   }
 
-  function handleLastPage() {
-    history.goBack()
+  function handleStarSelection(newStars) {
+    setReview({ ...review, stars: newStars })
   }
 
   return (
@@ -77,8 +77,10 @@ export function AddReview() {
                       type="text"
                       placeholder="e.g. Friendly staff!"
                       className="input"
-                      name="name"
+                      name="title"
                       onChange={handleStringFieldChange}
+                      value={review.title}
+                      maxLength={35}
                     />
                   </div>
                 </label>
@@ -88,18 +90,20 @@ export function AddReview() {
                     <textarea
                       placeholder="e.g. It was great to see that everyone was in a good mood!"
                       className="textarea"
-                      name="phone"
+                      name="body"
                       onChange={handleStringFieldChange}
+                      value={review.body}
                     />
                   </div>
                 </label>
-                <label className="label">Stars</label>
                 <div className="rating has-text-centered">
                   <input
                     id="star-rating-1"
                     type="radio"
                     name="stars"
                     value="1"
+                    checked={review.stars === 1}
+                    onChange={() => handleStarSelection(1)}
                   />
                   <label htmlFor="star-rating-1">1 star</label>
                   <input
@@ -107,6 +111,8 @@ export function AddReview() {
                     type="radio"
                     name="stars"
                     value="2"
+                    checked={review.stars === 2}
+                    onChange={() => handleStarSelection(2)}
                   />
                   <label htmlFor="star-rating-2">2 stars</label>
                   <input
@@ -114,6 +120,8 @@ export function AddReview() {
                     type="radio"
                     name="stars"
                     value="3"
+                    checked={review.stars === 3}
+                    onChange={() => handleStarSelection(3)}
                   />
                   <label htmlFor="star-rating-3">3 stars</label>
                   <input
@@ -121,6 +129,8 @@ export function AddReview() {
                     type="radio"
                     name="stars"
                     value="4"
+                    checked={review.stars === 4}
+                    onChange={() => handleStarSelection(4)}
                   />
                   <label htmlFor="star-rating-4">4 stars</label>
                   <input
@@ -128,6 +138,8 @@ export function AddReview() {
                     type="radio"
                     name="stars"
                     value="5"
+                    checked={review.stars === 5}
+                    onChange={() => handleStarSelection(5)}
                   />
                   <label htmlFor="star-rating-5">5 stars</label>
                   <div className="star-rating">
