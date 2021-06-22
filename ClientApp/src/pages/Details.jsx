@@ -74,17 +74,20 @@ export function Details() {
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="field is-grouped">
-          <Link to="/add-bar" className="button is-medium is-fullwidth is-link">
-            Add
-          </Link>
-          <Link to="#" className="button is-medium is-fullwidth is-danger">
-            Random
-          </Link>
-        </div>
-      </div>
+      <nav className="breadcrumb is-centered mt-4" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <Link to="/bars">Bars</Link>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              Details
+            </a>
+          </li>
+        </ul>
+      </nav>
       <div className="container is-size-4 has-text-centered m-5">
+        {/* <Link to="/bars" className="fas fa-chevron-circle-left"></Link> */}
         {bar.name}
         <p className="is-size-6">({bar.reviews.length})</p>
       </div>
@@ -112,7 +115,14 @@ export function Details() {
           <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
             {bar.reviews.map((review) => (
               <li className="box has-text-centered m-2">
-                <p className="subtitle">{review.title}</p>
+                <p className="subtitle mb-0">{review.title}</p>
+                <p className="is-size-7 has-text-centered mb-3">
+                  <span
+                    className="stars"
+                    style={{ '--rating': review.stars }}
+                    ariel-label="Star rating of this location"
+                  />
+                </p>
                 <p className="mb-1">{review.body}</p>
                 <p className="is-size-7 has-text-right">
                   {review.creationDate}
@@ -131,7 +141,9 @@ export function Details() {
               <p>+ Deal</p>
             </li>
             <li className="box has-text-centered m-2">
-              <p>+ Review</p>
+              <Link to="/add-review">
+                <p>+ Review</p>
+              </Link>
             </li>
             <li>
               <img src={GCB} alt="bar" className="m-2" />

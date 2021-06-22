@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
+import user from '../images/user.png'
+
 import 'bulma/css/bulma.min.css'
 
 function navbarClick() {
@@ -70,28 +72,53 @@ export function Bars() {
               </div>
             </div>
           </div>
+          <img src={user} alt="user" className="user-img" />
         </div>
       </div>
-      <div className="field is-grouped mt-1 mb-0">
-        <Link to="/add-bar" className="button is-medium is-fullwidth is-link">
-          Add
-        </Link>
-        <Link to="#" className="button is-medium is-fullwidth is-danger">
-          Random
-        </Link>
-      </div>
+      <nav className="breadcrumb is-centered" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <Link to="/">Sign in</Link>
+          </li>
+          <li>
+            <Link to="/sign-up">Sign up</Link>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              Bars
+            </a>
+          </li>
+        </ul>
+      </nav>
       <section className="section is-fullheight pt-3">
+        <div className="subtitle has-text-centered m-5">
+          (Think of a page title..)
+        </div>
+        <ul className="container is-flex is-justify-content-center">
+          <Link to="/add-bar">
+            <li className="box has-background-primary m-2">
+              <p className="subtitle has-text-centered has-text-white">
+                <i className="fas fa-plus"></i>
+              </p>
+            </li>
+          </Link>
+          <li className="box has-background-link m-2">
+            <p className="subtitle has-text-centered has-text-white">
+              <i className="fas fa-random"></i>
+            </p>
+          </li>
+        </ul>
         <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
           {bars.map((bar) => (
             <li className="container m-2" key={bar.id}>
               <Link to={`/details/${bar.id}`} className="box has-text-centered">
-                <p className="subtitle has-text-centered">{bar.name}</p>(
-                {bar.reviews.length})
+                <p className="subtitle has-text-centered">{bar.name}</p>
                 <span
                   className="stars"
-                  style={{ '--rating': 4.7 }}
+                  style={{ '--rating': 1 }}
                   ariel-label="Star rating of this location"
                 />
+                ({bar.reviews.length})
               </Link>
             </li>
           ))}

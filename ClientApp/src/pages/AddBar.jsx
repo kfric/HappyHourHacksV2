@@ -44,7 +44,19 @@ export function AddBar() {
         <div className="notification is-primary has-text-centered is-size-3">
           Happy Hour Hacks
         </div>
-        <div className="subtitle has-text-centered">Add Bar</div>
+        <nav className="breadcrumb is-centered" aria-label="breadcrumbs">
+          <ul>
+            <li>
+              <Link to="/bars">Bars</Link>
+            </li>
+            <li className="is-active">
+              <a href="#" aria-current="page">
+                Add bar
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div className="subtitle has-text-centered">Add bar</div>
         {errorMsg ? (
           <div className="notification is-danger">{errorMsg}</div>
         ) : null}

@@ -10,6 +10,22 @@ export function SignUp() {
         <div className="notification is-primary has-text-centered is-size-3">
           Happy Hour Hacks
         </div>
+        <nav className="breadcrumb is-centered mt-4" aria-label="breadcrumbs">
+          <ul>
+            <li>
+              <Link to="/">Sign up</Link>
+            </li>
+            <li>
+              <Link to="/bars">Bars</Link>
+            </li>
+            <li className="is-active">
+              <a href="#" aria-current="page">
+                Sign up
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div className="has-text-centered is-size-4">Create an account</div>
         <div className="container">
           <div className="hero-body">
             <div className="container">
