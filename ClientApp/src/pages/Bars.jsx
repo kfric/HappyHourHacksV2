@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 
 import user from '../images/user.png'
 
-import 'bulma/css/bulma.min.css'
-
 function navbarClick() {
   const navbarMenu = document.querySelector('#nav-links')
   navbarMenu.classList.toggle('is-active')
@@ -36,7 +34,7 @@ export function Bars() {
 
   return (
     <div className="container">
-      <div className="column">
+      <div className="navbar is-fixed-top p-3 has-background-white-bis">
         <div className="field is-grouped pt-2">
           <a className="navbar-burger" onClick={navbarClick}>
             <span></span>
@@ -75,7 +73,10 @@ export function Bars() {
           <img src={user} alt="user" className="user-img" />
         </div>
       </div>
-      <nav className="breadcrumb is-centered" aria-label="breadcrumbs">
+      <nav
+        className="breadcrumb is-centered hr-margin"
+        aria-label="breadcrumbs"
+      >
         <ul>
           <li>
             <Link to="/">Sign in</Link>

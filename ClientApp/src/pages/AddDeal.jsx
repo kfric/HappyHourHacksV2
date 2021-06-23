@@ -1,13 +1,14 @@
+import id from 'date-fns/esm/locale/id/index.js'
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 export function AddDeal() {
   const [newDeal, setNewDeal] = useState({
-    name: '',
-    phone: '',
-    address: '',
-    website: '',
-    style: '',
+    details: '',
+    start: '',
+    end: '',
+    days: [],
+    barId: id,
   })
   const history = useHistory()
   const [errorMsg, setErrorMsg] = useState('')
@@ -69,7 +70,7 @@ export function AddDeal() {
                     <textarea
                       className="textarea"
                       placeholder="e.g. Harry's Bar"
-                      value={newDeal.name}
+                      value={newDeal.details}
                       name="name"
                       onChange={handleStringFieldChange}
                     />
@@ -83,7 +84,7 @@ export function AddDeal() {
                     <div className="control ml-4">
                       <select
                         className="button has-text-left"
-                        value={newDeal.style}
+                        value={newDeal.start}
                         name="start"
                         onChange={handleStringFieldChange}
                       >
@@ -114,7 +115,7 @@ export function AddDeal() {
                     <div className="control ml-4">
                       <select
                         className="button"
-                        value={newDeal.style}
+                        value={newDeal.end}
                         name="start"
                         onChange={handleStringFieldChange}
                       >
@@ -142,7 +143,7 @@ export function AddDeal() {
                   </label>
                 </div>
                 <label className="label">
-                  <div className="field is-flex is-justify-content-space-evenly mt-4">
+                  <div className="field is-flex is-justify-content-space-evenly my-4">
                     <div className="label is-flex-direction-column">
                       <div className="is-flex">Su</div>
                       <input type="checkbox" className="checkbox" />
@@ -173,17 +174,15 @@ export function AddDeal() {
                     </div>
                   </div>
                 </label>
-                <div className="field is-grouped">
+                <div className="field is-flex is-justify-content-space-evenly">
                   <input
                     type="submit"
                     className="button is-primary"
                     value="Submit"
                   />
-                  <div className="container has-text-right">
-                    <Link to="/bars" className="button is-danger">
-                      Cancel
-                    </Link>
-                  </div>
+                  <Link to="/bars" className="button is-danger">
+                    Cancel
+                  </Link>
                 </div>
               </form>
             </div>

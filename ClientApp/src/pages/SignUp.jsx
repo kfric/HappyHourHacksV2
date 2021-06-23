@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import 'bulma/css/bulma.min.css'
-
 export function SignUp() {
   return (
     <div>

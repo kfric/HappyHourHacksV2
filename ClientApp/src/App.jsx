@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import './custom.scss'
-import 'bulma/css/bulma.min.css'
+
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
 import { Bars } from './pages/Bars'
@@ -10,6 +9,8 @@ import { AddBar } from './pages/AddBar'
 import { AddDeal } from './pages/AddDeal'
 import { PageNotFound } from './pages/PageNotFound'
 import { AddReview } from './pages/AddReview'
+
+import './custom.scss'
 
 export function App() {
   return (
@@ -30,7 +31,7 @@ export function App() {
         <Route exact path="/add-bar">
           <AddBar />
         </Route>
-        <Route exact path="/add-deal">
+        <Route exact path="/add-deal/:id">
           <AddDeal />
         </Route>
         <Route exact path="/add-review/:id">
