@@ -10,6 +10,9 @@ export function AddDeal() {
     days: [],
     barId: id,
   })
+
+  const days = useState()
+
   const history = useHistory()
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -18,6 +21,16 @@ export function AddDeal() {
     const fieldName = event.target.name
 
     const updateDeal = { ...newDeal, [fieldName]: value }
+    setNewDeal(updateDeal)
+  }
+
+  function handleCheckBoxClick(event) {
+    const value = event.target.value
+    const fieldName = event.target.name
+    console.log(event.target.checked)
+    console.log(event.target.value)
+    console.log(event.target.name)
+    const updateDeal = { ...newDeal, [fieldName]: newDeal.days + value }
     setNewDeal(updateDeal)
   }
 
@@ -71,7 +84,7 @@ export function AddDeal() {
                       className="textarea"
                       placeholder="e.g. Harry's Bar"
                       value={newDeal.details}
-                      name="name"
+                      name="details"
                       onChange={handleStringFieldChange}
                     />
                   </div>
@@ -116,7 +129,7 @@ export function AddDeal() {
                       <select
                         className="button"
                         value={newDeal.end}
-                        name="start"
+                        name="end"
                         onChange={handleStringFieldChange}
                       >
                         <option value="12pm">12pm</option>
@@ -146,31 +159,73 @@ export function AddDeal() {
                   <div className="field is-flex is-justify-content-space-evenly my-4">
                     <div className="label is-flex-direction-column">
                       <div className="is-flex">Su</div>
-                      <input type="checkbox" className="checkbox" />
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="Su"
+                        name="days"
+                        onClick={handleCheckBoxClick}
+                      />
                     </div>
                     <div className="is-flex-direction-column">
                       <div>Mo</div>
-                      <input type="checkbox" className="checkbox" />
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="Mo"
+                        name="days"
+                        onClick={handleCheckBoxClick}
+                      />
                     </div>
                     <div className="is-flex-direction-column">
                       <div>Tu</div>
-                      <input type="checkbox" className="checkbox" />
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="Tu"
+                        name="days"
+                        onClick={handleCheckBoxClick}
+                      />
                     </div>
                     <div className="is-flex-direction-column">
                       <div>We</div>
-                      <input type="checkbox" className="checkbox" />
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="We"
+                        name="days"
+                        onClick={handleCheckBoxClick}
+                      />
                     </div>
                     <div className="is-flex-direction-column">
                       <div>Th</div>
-                      <input type="checkbox" className="checkbox" />
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="Th"
+                        name="days"
+                        onClick={handleCheckBoxClick}
+                      />
                     </div>
                     <div className="is-flex-direction-column">
                       <div>Fr</div>
-                      <input type="checkbox" className="checkbox" />
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="Fr"
+                        name="days"
+                        onClick={handleCheckBoxClick}
+                      />
                     </div>
                     <div className="is-flex-direction-column">
                       <div>Sa</div>
-                      <input type="checkbox" className="checkbox" />
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="Sa"
+                        name="days"
+                        onClick={handleCheckBoxClick}
+                      />
                     </div>
                   </div>
                 </label>

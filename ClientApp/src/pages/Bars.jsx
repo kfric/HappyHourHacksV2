@@ -73,10 +73,7 @@ export function Bars() {
           <img src={user} alt="user" className="user-img" />
         </div>
       </div>
-      <nav
-        className="breadcrumb is-centered hr-margin"
-        aria-label="breadcrumbs"
-      >
+      <nav className="breadcrumb is-centered mt-6" aria-label="breadcrumbs">
         <ul>
           <li>
             <Link to="/">Sign in</Link>

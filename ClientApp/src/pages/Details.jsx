@@ -44,40 +44,6 @@ export function Details() {
 
   return (
     <div className="container">
-      <div className="navbar is-fixed-top p-5">
-        <div className="field is-grouped">
-          <a className="navbar-burger" onClick={navbarClick}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </a>
-          <div className="container">
-            <div className="container mr-3">
-              <div className="control has-icons-left">
-                <input
-                  className="input is-rounded"
-                  type="text"
-                  placeholder="Search..."
-                />
-                <span className="icon is small is-left">
-                  <i className="fas fa-search"></i>
-                </span>
-              </div>
-            </div>
-            <div className="navbar-menu" id="nav-links">
-              <div className="navbar-start">
-                <a className="navbar-item">Sign out</a>
-                <a
-                  href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
-                  className="navbar-item"
-                >
-                  About
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <nav className="breadcrumb is-centered mt-6" aria-label="breadcrumbs">
         <ul>
           <li>
@@ -157,7 +123,7 @@ export function Details() {
             ))}
 
             <li className="box has-text-centered m-2">
-              <Link to="/add-deal">
+              <Link to={`/add-deal/${id}`}>
                 <p>+ Deal</p>
               </Link>
             </li>
