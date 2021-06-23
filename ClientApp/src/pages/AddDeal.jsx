@@ -1,8 +1,11 @@
 import id from 'date-fns/esm/locale/id/index.js'
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 
 export function AddDeal() {
+  const params = useParams()
+  const id = params.id
+
   const [newDeal, setNewDeal] = useState({
     details: '',
     start: '',
@@ -38,14 +41,14 @@ export function AddDeal() {
   async function handleFormSubmit(event) {
     event.preventDefault()
 
-    const response = await fetch('/api/Bars', {
+    const response = await fetch('/api/Deals', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newDeal),
     })
 
     if (response.ok) {
-      history.push('bars')
+      history.goBack()
     } else {
       const json = await response.json()
       setErrorMsg(Object.values(json.errors).join(' '))
@@ -70,7 +73,7 @@ export function AddDeal() {
             </li>
           </ul>
         </nav>
-        <div className="subtitle has-text-centered">Add bar</div>
+        <div className="subtitle has-text-centered">Add deal</div>
         {errorMsg ? (
           <div className="notification is-danger">{errorMsg}</div>
         ) : null}
@@ -83,7 +86,7 @@ export function AddDeal() {
                   <div className="control">
                     <textarea
                       className="textarea"
-                      placeholder="e.g. Harry's Bar"
+                      placeholder="e.g. BOGO drinks!"
                       value={newDeal.details}
                       name="details"
                       onChange={handleStringFieldChange}
@@ -163,7 +166,6 @@ export function AddDeal() {
                       <input
                         type="checkbox"
                         className="checkbox"
-                        value="Su"
                         name="sunday"
                         onClick={handleCheckBoxClick}
                       />
@@ -173,7 +175,6 @@ export function AddDeal() {
                       <input
                         type="checkbox"
                         className="checkbox"
-                        value="Mo"
                         name="monday"
                         onClick={handleCheckBoxClick}
                       />
@@ -183,7 +184,6 @@ export function AddDeal() {
                       <input
                         type="checkbox"
                         className="checkbox"
-                        value="Tu"
                         name="tuesday"
                         onClick={handleCheckBoxClick}
                       />
@@ -193,7 +193,6 @@ export function AddDeal() {
                       <input
                         type="checkbox"
                         className="checkbox"
-                        value="We"
                         name="wednesday"
                         onClick={handleCheckBoxClick}
                       />
@@ -203,7 +202,6 @@ export function AddDeal() {
                       <input
                         type="checkbox"
                         className="checkbox"
-                        value="Th"
                         name="thursday"
                         onClick={handleCheckBoxClick}
                       />
@@ -213,7 +211,6 @@ export function AddDeal() {
                       <input
                         type="checkbox"
                         className="checkbox"
-                        value="Fr"
                         name="friday"
                         onClick={handleCheckBoxClick}
                       />
@@ -223,7 +220,6 @@ export function AddDeal() {
                       <input
                         type="checkbox"
                         className="checkbox"
-                        value="Sa"
                         name="saturday"
                         onClick={handleCheckBoxClick}
                       />
