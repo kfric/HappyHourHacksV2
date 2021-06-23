@@ -118,7 +118,7 @@ export function Bars() {
                   style={{ '--rating': 1 }}
                   ariel-label="Star rating of this location"
                 />
-                ({bar.reviews.length})
+                (1.0)
               </Link>
             </li>
           ))}

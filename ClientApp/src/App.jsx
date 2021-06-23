@@ -33,7 +33,7 @@ export function App() {
         <Route exact path="/add-deal">
           <AddDeal />
         </Route>
-        <Route exact path="/add-review">
+        <Route exact path="/add-review/:id">
           <AddReview />
         </Route>
         <Route exact path="*">

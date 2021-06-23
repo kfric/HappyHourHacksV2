@@ -5,6 +5,10 @@ import maps from '../images/maps.jpeg'
 import GCB from '../images/GCB.jpg'
 import GCB2 from '../images/GCB2.jpg'
 
+import format from 'date-fns/format'
+
+const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
+
 function navbarClick() {
   const navbarMenu = document.querySelector('#nav-links')
   navbarMenu.classList.toggle('is-active')
@@ -39,7 +43,7 @@ export function Details() {
 
   return (
     <div className="container">
-      <div className="column has-background-white-ter is-fixed-top p-5">
+      <div className="navbar is-fixed-top p-5">
         <div className="field is-grouped">
           <a className="navbar-burger" onClick={navbarClick}>
             <span></span>
@@ -61,7 +65,6 @@ export function Details() {
             </div>
             <div className="navbar-menu" id="nav-links">
               <div className="navbar-start">
-                {/* <a className="navbar-item">Home</a> */}
                 <a className="navbar-item">Sign out</a>
                 <a
                   href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
@@ -74,7 +77,7 @@ export function Details() {
           </div>
         </div>
       </div>
-      <nav className="breadcrumb is-centered mt-4" aria-label="breadcrumbs">
+      <nav className="breadcrumb is-centered mt-6" aria-label="breadcrumbs">
         <ul>
           <li>
             <Link to="/bars">Bars</Link>
@@ -87,9 +90,15 @@ export function Details() {
         </ul>
       </nav>
       <div className="container is-size-4 has-text-centered m-5">
-        {/* <Link to="/bars" className="fas fa-chevron-circle-left"></Link> */}
         {bar.name}
-        <p className="is-size-6">({bar.reviews.length})</p>
+        <p className="is-size-6">
+          <span
+            className="stars"
+            style={{ '--rating': 1 }}
+            ariel-label="Star rating of this location"
+          />
+          ({bar.reviews.length})
+        </p>
       </div>
       <section className="section is-fullheight pt-0">
         <div className="container">
@@ -114,7 +123,7 @@ export function Details() {
           </div>
           <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
             {bar.reviews.map((review) => (
-              <li className="box has-text-centered m-2">
+              <li className="box has-text-centered m-2" key={review.id}>
                 <p className="subtitle mb-0">{review.title}</p>
                 <p className="is-size-7 has-text-centered mb-3">
                   <span
@@ -123,9 +132,11 @@ export function Details() {
                     ariel-label="Star rating of this location"
                   />
                 </p>
-                <p className="mb-1">{review.body}</p>
+                <p className="mb-3">{review.body}</p>
                 <p className="is-size-7 has-text-right">
-                  {review.creationDate}
+                  <time>
+                    {format(new Date(review.creationDate), dateFormat)}
+                  </time>
                 </p>
               </li>
             ))}
@@ -138,10 +149,12 @@ export function Details() {
               <p>BOGO select drinks!</p>
             </li>
             <li className="box has-text-centered m-2">
-              <p>+ Deal</p>
+              <Link to="/add-deal">
+                <p>+ Deal</p>
+              </Link>
             </li>
             <li className="box has-text-centered m-2">
-              <Link to="/add-review">
+              <Link to={`/add-review/${id}`}>
                 <p>+ Review</p>
               </Link>
             </li>

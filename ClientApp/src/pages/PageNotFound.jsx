@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export function PageNotFound() {
+  const history = useHistory()
   return (
     <div>
       <section className="hero is-fullheight">
@@ -17,10 +18,14 @@ export function PageNotFound() {
                     <div className="field has-text-centered">
                       Nothing here...
                     </div>
-                    <div className="field has-text-centered">Try this</div>
-                    <Link to="/" className="button is-large is-link">
-                      Happy Hour Hacks Home
-                    </Link>
+                    <div
+                      className="button is-large is-link m-6"
+                      onClick={function () {
+                        history.goBack()
+                      }}
+                    >
+                      Return to last page
+                    </div>
                   </form>
                 </div>
               </div>

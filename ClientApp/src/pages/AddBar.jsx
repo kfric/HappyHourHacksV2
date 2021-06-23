@@ -60,7 +60,6 @@ export function AddBar() {
         {errorMsg ? (
           <div className="notification is-danger">{errorMsg}</div>
         ) : null}
-
         <div className="container is-fluid">
           <div className="hero-body pt-0">
             <div className="container">
