@@ -17,6 +17,7 @@ namespace HappyHourHacksV2.Models
         public DbSet<Bar> Bars { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Deal> Deals { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
