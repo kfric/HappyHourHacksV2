@@ -110,8 +110,16 @@ export function Details() {
           </ul>
           <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
             {bar.deals.map((deal) => (
-              <li className="box has-text-centered m-2">
-                <p className="subtitle mb-0">{deal.days}</p>
+              <li className="box has-text-centered m-2" key={deal.id}>
+                <p className="subtitle mb-0">
+                  {deal.sunday ? 'Su, ' : null}
+                  {deal.monday ? 'Mo, ' : null}
+                  {deal.tuesday ? 'Tu, ' : null}
+                  {deal.wednesday ? 'We, ' : null}
+                  {deal.thursday ? 'Th, ' : null}
+                  {deal.friday ? 'Fr, ' : null}
+                  {deal.saturday ? 'Sa' : null}
+                </p>
                 <p className="is-size-7 has-text-centered mb-3">
                   {deal.start}-{deal.end}
                 </p>
@@ -121,7 +129,6 @@ export function Details() {
                 </p>
               </li>
             ))}
-
             <li className="box has-text-centered m-2">
               <Link to={`/add-deal/${id}`}>
                 <p>+ Deal</p>

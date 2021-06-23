@@ -11,9 +11,9 @@ INSERT INTO "Reviews" ("BarId", "Title", "Body", "Stars", "CreationDate") VALUES
 INSERT INTO "Reviews" ("BarId", "Title", "Body", "Stars", "CreationDate") VALUES (1, 'The food was great!', 'everything was cooked just right!', 4, '2020-06-09 14:23:55');
 INSERT INTO "Reviews" ("BarId", "Title", "Body", "Stars", "CreationDate") VALUES (4, 'Open late', 'Open until 3am', 4, '2020-01-10 14:23:55');
 
-INSERT INTO "Deals" ("BarId", "Details", "Start", "End", "Days", "CreationDate") VALUES (1, 'BOGO wells!', '12pm', '3pm', 'Mo', '2020-01-01 14:23:55');
-INSERT INTO "Deals" ("BarId", "Details", "Start", "End", "Days", "CreationDate") VALUES (2, '$1 beers', '8pm', '10pm', 'Th', '2020-06-01 14:23:55');
-INSERT INTO "Deals" ("BarId", "Details", "Start", "End", "Days", "CreationDate") VALUES (3, 'All you can drink!', '8pm', '10pm', 'Fr', '2020-06-07 14:23:55');
-INSERT INTO "Deals" ("BarId", "Details", "Start", "End", "Days", "CreationDate") VALUES (4, '$1 margaritas', '3pm', '5pm', 'Mo, Tu, We, Th, Fr', '2020-06-20 14:23:55');
+INSERT INTO "Deals" ("BarId", "Details", "Start", "End", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "CreationDate") VALUES (1, 'BOGO wells!', '12pm', '3pm', true, false, true, true, true, false, true, '2020-01-01 14:23:55');
+INSERT INTO "Deals" ("BarId", "Details", "Start", "End", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "CreationDate") VALUES (2, '$1 beers', '8pm', '10pm', true, true, true, true, true, true, true, '2020-06-01 14:23:55');
+INSERT INTO "Deals" ("BarId", "Details", "Start", "End", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "CreationDate") VALUES (3, 'All you can drink!', '8pm', '10pm', false, false, false, false, false, false, false, '2020-06-07 14:23:55');
+INSERT INTO "Deals" ("BarId", "Details", "Start", "End", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "CreationDate") VALUES (4, '$1 margaritas', '3pm', '5pm', true, true, true, false, false, false, false, '2020-06-20 14:23:55');
 
 -- psql --file=Models/exampledata.sql HappyHourHacksV2Database

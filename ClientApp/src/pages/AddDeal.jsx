@@ -7,11 +7,15 @@ export function AddDeal() {
     details: '',
     start: '',
     end: '',
-    days: [],
+    sunday: false,
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false,
     barId: id,
   })
-
-  const days = useState()
 
   const history = useHistory()
   const [errorMsg, setErrorMsg] = useState('')
@@ -25,12 +29,9 @@ export function AddDeal() {
   }
 
   function handleCheckBoxClick(event) {
-    const value = event.target.value
+    const value = event.target.checked
     const fieldName = event.target.name
-    console.log(event.target.checked)
-    console.log(event.target.value)
-    console.log(event.target.name)
-    const updateDeal = { ...newDeal, [fieldName]: newDeal.days + value }
+    const updateDeal = { ...newDeal, [fieldName]: value }
     setNewDeal(updateDeal)
   }
 
@@ -163,7 +164,7 @@ export function AddDeal() {
                         type="checkbox"
                         className="checkbox"
                         value="Su"
-                        name="days"
+                        name="sunday"
                         onClick={handleCheckBoxClick}
                       />
                     </div>
@@ -173,7 +174,7 @@ export function AddDeal() {
                         type="checkbox"
                         className="checkbox"
                         value="Mo"
-                        name="days"
+                        name="monday"
                         onClick={handleCheckBoxClick}
                       />
                     </div>
@@ -183,7 +184,7 @@ export function AddDeal() {
                         type="checkbox"
                         className="checkbox"
                         value="Tu"
-                        name="days"
+                        name="tuesday"
                         onClick={handleCheckBoxClick}
                       />
                     </div>
@@ -193,7 +194,7 @@ export function AddDeal() {
                         type="checkbox"
                         className="checkbox"
                         value="We"
-                        name="days"
+                        name="wednesday"
                         onClick={handleCheckBoxClick}
                       />
                     </div>
@@ -203,7 +204,7 @@ export function AddDeal() {
                         type="checkbox"
                         className="checkbox"
                         value="Th"
-                        name="days"
+                        name="thursday"
                         onClick={handleCheckBoxClick}
                       />
                     </div>
@@ -213,7 +214,7 @@ export function AddDeal() {
                         type="checkbox"
                         className="checkbox"
                         value="Fr"
-                        name="days"
+                        name="friday"
                         onClick={handleCheckBoxClick}
                       />
                     </div>
@@ -223,7 +224,7 @@ export function AddDeal() {
                         type="checkbox"
                         className="checkbox"
                         value="Sa"
-                        name="days"
+                        name="saturday"
                         onClick={handleCheckBoxClick}
                       />
                     </div>

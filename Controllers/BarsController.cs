@@ -42,7 +42,7 @@ namespace HappyHourHacksV2.Controllers
             }
             else
             {
-                // uses the filter
+                // uses the filter..... Do I want to include other date from other models??? I'll leave in for now...
                 return await _context.Bars.Where(bar => bar.Name.ToLower().Contains(filter.ToLower()) ||
                                                         bar.Address.ToLower().Contains(filter.ToLower()) ||
                                                         bar.Style.ToLower().Contains(filter.ToLower())).Include(bar => bar.Reviews).
