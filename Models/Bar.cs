@@ -21,5 +21,7 @@ namespace HappyHourHacksV2.Models
         public string Style { get; set; }
 
         public List<Review> Reviews { get; set; }
+
+        public List<Deal> Deals { get; set; }
     }
 }
