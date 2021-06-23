@@ -25,6 +25,7 @@ export function Details() {
     website: '',
     style: '',
     reviews: [],
+    deals: [],
   })
 
   useEffect(() => {
@@ -140,14 +141,21 @@ export function Details() {
                 </p>
               </li>
             ))}
-            <li className="box has-text-centered m-2">
-              <p className="subtitle">Mo, Tu, We, Th, Fr</p>
-              <p>2 for $20 Entrees</p>
-            </li>
-            <li className="box has-text-centered m-2">
-              <p className="subtitle">Su, Mo, Tu, We, Th, Fr, S</p>
-              <p>BOGO select drinks!</p>
-            </li>
+          </ul>
+          <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
+            {bar.deals.map((deal) => (
+              <li className="box has-text-centered m-2">
+                <p className="subtitle mb-0">{deal.days}</p>
+                <p className="is-size-7 has-text-centered mb-3">
+                  {deal.start}-{deal.end}
+                </p>
+                <p className="mb-3">{deal.details}</p>
+                <p className="is-size-7 has-text-right">
+                  <time>{format(new Date(deal.creationDate), dateFormat)}</time>
+                </p>
+              </li>
+            ))}
+
             <li className="box has-text-centered m-2">
               <Link to="/add-deal">
                 <p>+ Deal</p>
