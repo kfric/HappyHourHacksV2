@@ -43,7 +43,7 @@ export function SignUp() {
       <div className="notification is-primary has-text-centered is-size-3">
         Happy Hour Hacks
       </div>
-      <nav className="breadcrumb is-centered mt-4" aria-label="breadcrumbs">
+      {/* <nav className="breadcrumb is-centered mt-4" aria-label="breadcrumbs">
         <ul>
           <li>
             <Link to="/">Sign in</Link>
@@ -57,7 +57,7 @@ export function SignUp() {
             </a>
           </li>
         </ul>
-      </nav>
+      </nav> */}
       <div className="has-text-centered is-size-4">Create an account</div>
       {errorMsg ? (
         <div className="notification is-danger has-text-centered">

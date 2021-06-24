@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { getUser, isLoggedIn, logout } from '../auth'
 
 import maps from '../images/maps.jpeg'
 import GCB from '../images/GCB.jpg'
 import GCB2 from '../images/GCB2.jpg'
+import user2 from '../images/user2.png'
 
 import format from 'date-fns/format'
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
+const user = getUser()
 
 function navbarClick() {
   const navbarMenu = document.querySelector('#nav-links')
@@ -42,8 +45,53 @@ export function Details() {
     fetchBar()
   }, [id])
 
+  function handleLogOut() {
+    logout()
+    window.location.assign('bars')
+  }
+
   return (
     <div className="container">
+      <div className="navbar is-fixed-top p-3 has-background-white-bis">
+        <div className="field is-grouped pt-2">
+          <a className="navbar-burger" onClick={navbarClick}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+          <div className="container">
+            <div className="navbar-menu" id="nav-links">
+              <div className="navbar-start">
+                {isLoggedIn() ? null : (
+                  <Link to="/" className="navbar-item">
+                    Sign in
+                  </Link>
+                )}
+                {isLoggedIn() ? null : (
+                  <Link to="/sign-up" className="navbar-item">
+                    Sign up
+                  </Link>
+                )}
+                {isLoggedIn() ? (
+                  <span className="navbar-item" onClick={handleLogOut}>
+                    Sign out
+                  </span>
+                ) : null}
+                <a
+                  href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
+                  className="navbar-item"
+                >
+                  About
+                </a>
+              </div>
+            </div>
+          </div>
+          {isLoggedIn() ? <p className="mr-3 mt-3">{user.fullName}</p> : null}
+          {isLoggedIn() ? (
+            <img src={user2} alt="user" className="user-img" />
+          ) : null}
+        </div>
+      </div>
       <nav className="breadcrumb is-centered mt-6" aria-label="breadcrumbs">
         <ul>
           <li>
@@ -80,12 +128,16 @@ export function Details() {
               <div className="tile is-child box notification is-link">
                 Website
               </div>
-              <div className="tile is-child box notification is-warning">
-                Update
-              </div>
-              <div className="tile is-child box notification is-danger">
-                Delete
-              </div>
+              {isLoggedIn() ? (
+                <div className="tile is-child box notification is-warning">
+                  Update
+                </div>
+              ) : null}
+              {isLoggedIn() ? (
+                <div className="tile is-child box notification is-danger">
+                  Delete
+                </div>
+              ) : null}
             </div>
           </div>
           <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
@@ -129,25 +181,31 @@ export function Details() {
                 </p>
               </li>
             ))}
-            <li className="box has-text-centered m-2">
-              <Link to={`/add-deal/${id}`}>
-                <p>+ Deal</p>
-              </Link>
-            </li>
-            <li className="box has-text-centered m-2">
-              <Link to={`/add-review/${id}`}>
-                <p>+ Review</p>
-              </Link>
-            </li>
+            {isLoggedIn() ? (
+              <li className="box has-text-centered m-2">
+                <Link to={`/add-deal/${id}`}>
+                  <p>+ Deal</p>
+                </Link>
+              </li>
+            ) : null}
+            {isLoggedIn() ? (
+              <li className="box has-text-centered m-2">
+                <Link to={`/add-review/${id}`}>
+                  <p>+ Review</p>
+                </Link>
+              </li>
+            ) : null}
             <li>
               <img src={GCB} alt="bar" className="m-2" />
             </li>
             <li>
               <img src={GCB2} alt="bar" className="m-2" />
             </li>
-            <li className="box has-text-centered m-2">
-              <p>+ img</p>
-            </li>
+            {isLoggedIn() ? (
+              <li className="box has-text-centered m-2">
+                <p>+ img</p>
+              </li>
+            ) : null}
           </ul>
         </div>
       </section>
