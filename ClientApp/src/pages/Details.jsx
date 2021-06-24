@@ -50,6 +50,14 @@ export function Details() {
     window.location.assign('bars')
   }
 
+  const totalStars = bar.reviews.reduce(
+    (starRatingSum, review) => starRatingSum + review.stars,
+    0
+  )
+  const averageStars =
+    bar.reviews.length === 0 ? 0 : totalStars / bar.reviews.length
+  const averageStarsToOneDecimalPlace = averageStars.toFixed(1)
+
   return (
     <div className="container">
       <div className="navbar is-fixed-top p-3 has-background-white-bis">
@@ -109,8 +117,8 @@ export function Details() {
         <p className="is-size-6">
           <span
             className="stars"
-            style={{ '--rating': 1 }}
-            ariel-label="Star rating of this location"
+            style={{ '--rating': averageStarsToOneDecimalPlace }}
+            ariel-label={`Star rating of this location is ${averageStarsToOneDecimalPlace} out of 5.`}
           />
           ({bar.reviews.length})
         </p>

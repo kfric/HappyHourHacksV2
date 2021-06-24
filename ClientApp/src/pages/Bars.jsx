@@ -4,6 +4,30 @@ import { getUser, isLoggedIn, logout } from '../auth'
 
 import user2 from '../images/user2.png'
 
+function SingleBar({ bar }) {
+  const totalStars = bar.reviews.reduce(
+    (starRatingSum, review) => starRatingSum + review.stars,
+    0
+  )
+  const averageStars =
+    bar.reviews.length === 0 ? 0 : totalStars / bar.reviews.length
+  const averageStarsToOneDecimalPlace = averageStars.toFixed(1)
+
+  return (
+    <li className="container m-2" key={bar.id}>
+      <Link to={`/details/${bar.id}`} className="box has-text-centered">
+        <p className="subtitle has-text-centered">{bar.name}</p>
+        <span
+          className="stars"
+          style={{ '--rating': averageStarsToOneDecimalPlace }}
+          ariel-label={`Star rating of this location is ${averageStarsToOneDecimalPlace} out of 5.`}
+        />
+        (1.0)
+      </Link>
+    </li>
+  )
+}
+
 const user = getUser()
 
 function navbarClick() {
@@ -118,17 +142,7 @@ export function Bars() {
         ) : null}
         <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
           {bars.map((bar) => (
-            <li className="container m-2" key={bar.id}>
-              <Link to={`/details/${bar.id}`} className="box has-text-centered">
-                <p className="subtitle has-text-centered">{bar.name}</p>
-                <span
-                  className="stars"
-                  style={{ '--rating': 1 }}
-                  ariel-label="Star rating of this location"
-                />
-                (1.0)
-              </Link>
-            </li>
+            <SingleBar key={bar.id} bar={bar} />
           ))}
         </ul>
       </section>
