@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HappyHourHacksV2.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HappyHourHacksV2.Controllers
 {
@@ -136,8 +138,12 @@ namespace HappyHourHacksV2.Controllers
         // new values for the record.
         //
         [HttpPost]
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Bar>> PostBar(Bar bar)
         {
+            bar.UserId = GetCurrentUserId();
+
             // Indicate to the database context we want to add this new record
             _context.Bars.Add(bar);
             await _context.SaveChangesAsync();
@@ -178,6 +184,13 @@ namespace HappyHourHacksV2.Controllers
         private bool BarExists(int id)
         {
             return _context.Bars.Any(bar => bar.Id == id);
+        }
+
+        // Private helper method to get the JWT claim related to the user ID
+        private int GetCurrentUserId()
+        {
+            // Get the User Id from the claim and then parse it as an integer.
+            return int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
         }
     }
 }

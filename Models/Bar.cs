@@ -20,6 +20,9 @@ namespace HappyHourHacksV2.Models
         [Required]
         public string Style { get; set; }
 
+        // user Id of the user that created this bar
+        public int UserId { get; set; }
+
         public List<Review> Reviews { get; set; }
 
         public List<Deal> Deals { get; set; }

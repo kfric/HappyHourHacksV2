@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import { authHeader } from '../auth'
 
 export function AddBar() {
   const [newBar, setNewBar] = useState({
@@ -26,15 +27,19 @@ export function AddBar() {
 
     const response = await fetch('/api/Bars', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...authHeader() },
       body: JSON.stringify(newBar),
     })
 
-    if (response.ok) {
-      history.push('bars')
+    if (response.status === 401) {
+      setErrorMsg('Not Authorized')
     } else {
-      const json = await response.json()
-      setErrorMsg(Object.values(json.errors).join(' '))
+      if (response.ok) {
+        history.push('bars')
+      } else {
+        const json = await response.json()
+        setErrorMsg(Object.values(json.errors).join(' '))
+      }
     }
   }
 
@@ -57,7 +62,9 @@ export function AddBar() {
       </nav>
       <div className="subtitle has-text-centered">Add bar</div>
       {errorMsg ? (
-        <div className="notification is-danger">{errorMsg}</div>
+        <div className="notification is-danger has-text-centered">
+          {errorMsg}
+        </div>
       ) : null}
       <div className="container is-fluid">
         <div className="hero-body pt-0">

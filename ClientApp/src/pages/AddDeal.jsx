@@ -1,6 +1,7 @@
 import id from 'date-fns/esm/locale/id/index.js'
 import React, { useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
+import { authHeader } from '../auth'
 
 export function AddDeal() {
   const params = useParams()
@@ -43,15 +44,19 @@ export function AddDeal() {
 
     const response = await fetch('/api/Deals', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...authHeader() },
       body: JSON.stringify(newDeal),
     })
 
-    if (response.ok) {
-      history.goBack()
+    if (response.status === 401) {
+      setErrorMsg('Not Authorized')
     } else {
-      const json = await response.json()
-      setErrorMsg(Object.values(json.errors).join(' '))
+      if (response.ok) {
+        history.goBack()
+      } else {
+        const json = await response.json()
+        setErrorMsg(Object.values(json.errors).join(' '))
+      }
     }
   }
 

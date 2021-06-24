@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
+import { authHeader } from '../auth'
 
 export function AddReview() {
   const params = useParams()
@@ -28,15 +29,18 @@ export function AddReview() {
 
     const response = await fetch('/api/Reviews', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...authHeader() },
       body: JSON.stringify(review),
     })
-
-    if (response.ok) {
-      history.goBack()
+    if (response.status === 401) {
+      setErrorMsg('Not Authorized')
     } else {
-      const json = await response.json()
-      setErrorMsg(Object.values(json.errors).join(' '))
+      if (response.ok) {
+        history.goBack()
+      } else {
+        const json = await response.json()
+        setErrorMsg(Object.values(json.errors).join(' '))
+      }
     }
   }
 

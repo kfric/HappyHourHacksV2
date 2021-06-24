@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HappyHourHacksV2.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace HappyHourHacksV2.Controllers
 {
@@ -35,6 +37,9 @@ namespace HappyHourHacksV2.Controllers
         // new values for the record.
         //
         [HttpPost]
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
         public async Task<ActionResult<Review>> PostReview(Review review)
         {
             // Indicate to the database context we want to add this new record
@@ -44,6 +49,11 @@ namespace HappyHourHacksV2.Controllers
             // Return a response that indicates the object was created (status code `201`) and some additional
             // headers with details of the newly created object.
             return CreatedAtAction("GetReview", new { id = review.Id }, review);
+        }
+        private int GetCurrentUserId()
+        {
+            // Get the User Id from the claim and then parse it as an integer.
+            return int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
         }
     }
 }

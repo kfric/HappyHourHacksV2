@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HappyHourHacksV2.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace HappyHourHacksV2.Controllers
 {
@@ -122,6 +124,8 @@ namespace HappyHourHacksV2.Controllers
         // new values for the record.
         //
         [HttpPost]
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Deal>> PostDeal(Deal deal)
         {
             // Indicate to the database context we want to add this new record
@@ -164,6 +168,11 @@ namespace HappyHourHacksV2.Controllers
         private bool DealExists(int id)
         {
             return _context.Deals.Any(deal => deal.Id == id);
+        }
+        private int GetCurrentUserId()
+        {
+            // Get the User Id from the claim and then parse it as an integer.
+            return int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
         }
     }
 }
