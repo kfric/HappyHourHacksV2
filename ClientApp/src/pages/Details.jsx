@@ -152,6 +152,7 @@ export function Details() {
                   />
                 </p>
                 <p className="mb-3">{review.body}</p>
+                <p>by {review.user.fullName}</p>
                 <p className="is-size-7 has-text-right">
                   <time>
                     {format(new Date(review.creationDate), dateFormat)}

@@ -18,5 +18,9 @@ namespace HappyHourHacksV2.Models
 
         // user Id of the user that created this review
         public int UserId { get; set; }
+
+        public User User { get; set; }
+
+
     }
 }

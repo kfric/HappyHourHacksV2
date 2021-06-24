@@ -64,8 +64,10 @@ namespace HappyHourHacksV2.Controllers
             // Find the bar in the database using `FindAsync` to look it up by id
             // Find the restaurant in the database using Include to ensure we have the associated reviews
             var bar = await _context.Bars.Include(bar => bar.Reviews).
-                                            Include(bar => bar.Deals).
-                                            Where(bar => bar.Id == id).FirstOrDefaultAsync();
+                                          ThenInclude(review => review.User).
+                                          Include(bar => bar.Deals).
+                                          Where(bar => bar.Id == id).
+                                          FirstOrDefaultAsync();
             // If we didn't find anything, we receive a `null` in return
             if (bar == null)
             {
