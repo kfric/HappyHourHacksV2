@@ -23,6 +23,9 @@ namespace HappyHourHacksV2.Models
         // user Id of the user that created this bar
         public int UserId { get; set; }
 
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
         public List<Review> Reviews { get; set; }
 
         public List<Deal> Deals { get; set; }
