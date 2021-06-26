@@ -64,8 +64,14 @@ export function Bars() {
     window.location.assign('bars')
   }
 
+  function handleRandomButton() {
+    const random = Math.floor(Math.random() * bars.length + 1)
+    // push the user to '/Details/{random}
+    window.location.assign(`/Details/${random}`)
+  }
+
   return (
-    <div className="container">
+    <>
       <div className="navbar is-fixed-top p-3 has-background-white-bis">
         <div className="field is-grouped pt-2">
           <a className="navbar-burger" onClick={navbarClick}>
@@ -73,47 +79,45 @@ export function Bars() {
             <span></span>
             <span></span>
           </a>
-          <div className="container">
-            <div className="container mr-3">
-              <div className="control has-icons-left">
-                <input
-                  className="input is-rounded"
-                  type="text"
-                  placeholder="Search..."
-                  value={searchText}
-                  onChange={function (event) {
-                    setSearchText(event.target.value)
-                  }}
-                />
-                <span className="icon is small is-left">
-                  <i className="fas fa-search"></i>
-                </span>
-              </div>
+          <div className="container mr-3">
+            <div className="control has-icons-left">
+              <input
+                className="input is-rounded"
+                type="text"
+                placeholder="Search..."
+                value={searchText}
+                onChange={function (event) {
+                  setSearchText(event.target.value)
+                }}
+              />
+              <span className="icon is small is-left">
+                <i className="fas fa-search"></i>
+              </span>
             </div>
-            <div className="navbar-menu" id="nav-links">
-              <div className="navbar-start">
-                {isLoggedIn() ? null : (
-                  <Link to="/" className="navbar-item">
-                    Sign in
-                  </Link>
-                )}
-                {isLoggedIn() ? null : (
-                  <Link to="/sign-up" className="navbar-item">
-                    Sign up
-                  </Link>
-                )}
-                {isLoggedIn() ? (
-                  <span className="navbar-item" onClick={handleLogOut}>
-                    Sign out
-                  </span>
-                ) : null}
-                <a
-                  href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
-                  className="navbar-item"
-                >
-                  About
-                </a>
-              </div>
+          </div>
+          <div className="navbar-menu" id="nav-links">
+            <div className="navbar-start">
+              {isLoggedIn() ? null : (
+                <Link to="/" className="navbar-item">
+                  Sign in
+                </Link>
+              )}
+              {isLoggedIn() ? null : (
+                <Link to="/sign-up" className="navbar-item">
+                  Sign up
+                </Link>
+              )}
+              {isLoggedIn() ? (
+                <span className="navbar-item" onClick={handleLogOut}>
+                  Sign out
+                </span>
+              ) : null}
+              <a
+                href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
+                className="navbar-item"
+              >
+                About
+              </a>
             </div>
           </div>
           {isLoggedIn() ? <p className="mr-3 mt-3">{user.fullName}</p> : null}
@@ -122,7 +126,7 @@ export function Bars() {
           ) : null}
         </div>
       </div>
-      <section className="section is-fullheight pt-3">
+      <section className="section is-fullheight mt-5">
         <div className="subtitle has-text-centered m-5">Bars & Restaurants</div>
         {isLoggedIn() ? (
           <ul className="container is-flex is-justify-content-center">
@@ -133,7 +137,10 @@ export function Bars() {
                 </p>
               </li>
             </Link>
-            <li className="box has-background-link m-2">
+            <li
+              className="box has-background-link m-2"
+              onClick={handleRandomButton}
+            >
               <p className="subtitle has-text-centered has-text-white">
                 <i className="fas fa-random"></i>
               </p>
@@ -146,7 +153,7 @@ export function Bars() {
           ))}
         </ul>
       </section>
-    </div>
+    </>
   )
 }
 

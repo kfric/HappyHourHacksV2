@@ -56,7 +56,7 @@ export function Details() {
   const [viewport, setViewport] = useState({
     latitude: 27.77101804911986,
     longitude: -82.66090611749074,
-    zoom: 9.8,
+    zoom: 9,
   })
 
   const totalStars = bar.reviews.reduce(
@@ -109,7 +109,10 @@ export function Details() {
           ) : null}
         </div>
       </div>
-      <nav className="breadcrumb is-centered mt-6" aria-label="breadcrumbs">
+      <nav
+        className="breadcrumb is-centered mt-6 pt-6"
+        aria-label="breadcrumbs"
+      >
         <ul>
           <li>
             <Link to="/bars">Bars</Link>
