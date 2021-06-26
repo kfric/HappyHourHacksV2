@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getUser, isLoggedIn, logout } from '../auth'
+import ReactMapGL, { Marker, NavigationControl } from 'react-map-gl'
 
 import maps from '../images/maps.jpeg'
 import GCB from '../images/GCB.jpg'
@@ -27,6 +28,8 @@ export function Details() {
     address: '',
     website: '',
     style: '',
+    latitude: 0,
+    longitude: 0,
     reviews: [],
     deals: [],
   })
@@ -49,6 +52,12 @@ export function Details() {
     logout()
     window.location.assign('bars')
   }
+
+  const [viewport, setViewport] = useState({
+    latitude: 27.77101804911986,
+    longitude: -82.66090611749074,
+    zoom: 9.8,
+  })
 
   const totalStars = bar.reviews.reduce(
     (starRatingSum, review) => starRatingSum + review.stars,
@@ -126,8 +135,27 @@ export function Details() {
       <section className="section is-fullheight pt-0">
         <div className="container">
           <div className="tile is-ancestor">
-            <div className="tile is-parent is-8">
-              <img src={maps} alt="map to the bar location" />
+            <div className="tile is-parent is-8 is-flex">
+              <ReactMapGL
+                {...viewport}
+                onViewportChange={setViewport}
+                style={{ position: 'static' }}
+                width="696px"
+                height="256px"
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+              >
+                <div
+                  style={{ position: 'absolute', left: 10 }}
+                  className="mt-2"
+                >
+                  <NavigationControl />
+                </div>
+                <Marker latitude={bar.latitude} longitude={bar.longitude}>
+                  <span role="img" aria-label="pin">
+                    📍
+                  </span>
+                </Marker>
+              </ReactMapGL>
             </div>
             <div className="tile is-parent is-justify-content-space-evenly is-flex-direction-column">
               <div className="tile is-child box notification is-primary">
