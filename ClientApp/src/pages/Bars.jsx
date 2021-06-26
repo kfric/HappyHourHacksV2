@@ -22,7 +22,7 @@ function SingleBar({ bar }) {
           style={{ '--rating': averageStarsToOneDecimalPlace }}
           ariel-label={`Star rating of this location is ${averageStarsToOneDecimalPlace} out of 5.`}
         />
-        (1.0)
+        ({averageStarsToOneDecimalPlace})
       </Link>
     </li>
   )
