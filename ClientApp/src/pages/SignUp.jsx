@@ -31,7 +31,7 @@ export function SignUp() {
     })
 
     if (response.ok) {
-      history.push('bars')
+      history.push('/')
     } else {
       const json = await response.json()
       setErrorMsg(Object.values(json.errors).join(' '))

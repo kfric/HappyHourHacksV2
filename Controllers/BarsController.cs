@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using HappyHourHacksV2.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using Geocoding.Microsoft;
 
 namespace HappyHourHacksV2.Controllers
 {
@@ -20,12 +22,14 @@ namespace HappyHourHacksV2.Controllers
     {
         // This is the variable you use to have access to your database
         private readonly DatabaseContext _context;
+        private readonly string BING_MAPS_KEY;
 
         // Constructor that recives a reference to your database context
         // and stores it in _context for you to use in your API methods
-        public BarsController(DatabaseContext context)
+        public BarsController(DatabaseContext context, IConfiguration config)
         {
             _context = context;
+            BING_MAPS_KEY = config["BING_MAPS_KEY"];
         }
 
         // GET: api/Bars
@@ -144,6 +148,23 @@ namespace HappyHourHacksV2.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Bar>> PostBar(Bar bar)
         {
+            // Create a new geocoder
+            var geocoder = new BingMapsGeocoder(BING_MAPS_KEY);
+
+            // Request this address to be geocoded.
+            var geocodedAddresses = await geocoder.GeocodeAsync(bar.Address);
+
+            // ... and pick out the best address sorted by the confidence level
+            var bestGeocodedAddress = geocodedAddresses.OrderBy(address => address.Confidence).LastOrDefault();
+
+            // If we have a best geocoded address, use the latitude and longitude from that result
+            if (bestGeocodedAddress != null)
+            {
+                bar.Latitude = bestGeocodedAddress.Coordinates.Latitude;
+                bar.Longitude = bestGeocodedAddress.Coordinates.Longitude;
+            }
+
+
             bar.UserId = GetCurrentUserId();
 
             // Indicate to the database context we want to add this new record
