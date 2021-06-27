@@ -41,8 +41,11 @@ export function App() {
           <PageNotFound />
         </Route>
       </Switch>
-      <div className="content has-text-centered">
-        <p>Created by Karl Frick in St.Petersburg, FL</p>
+      <div className="footer has-text-centered is-fixed-bottom pb-1 has-text-white">
+        <p>
+          Created by Karl Frick in St.Petersburg, FL{' '}
+          <i className="fas fa-heart"></i>
+        </p>
       </div>
     </>
   )

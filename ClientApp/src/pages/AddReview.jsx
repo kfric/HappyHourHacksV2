@@ -50,22 +50,24 @@ export function AddReview() {
 
   return (
     <section className="hero is-fullheight">
-      <div className="notification is-primary has-text-centered is-size-3">
+      <div className="hero is-primary has-text-centered is-size-1 has-text-weight-bold p-5 is-family-secondary">
         Happy Hour Hacks
       </div>
-      <nav className="breadcrumb is-centered" aria-label="breadcrumbs">
+      <nav className="breadcrumb is-centered mt-5" aria-label="breadcrumbs">
         <ul>
           <li>
-            <Link to="/bars">Bars</Link>
+            <Link to="javascript:history.back()">Bars</Link>
           </li>
           <li className="is-active">
-            <a href="#" aria-current="page">
+            <a href="#" aria-current="page" className="has-text-white">
               Leave review
             </a>
           </li>
         </ul>
       </nav>
-      <div className="subtitle has-text-centered">Leave a review</div>
+      <div className="subtitle has-text-centered has-text-white is-size-3">
+        Leave a review
+      </div>
       {errorMsg ? (
         <div className="notification is-danger">{errorMsg}</div>
       ) : null}
@@ -74,7 +76,7 @@ export function AddReview() {
           <div className="container">
             <form onSubmit={handleFormSubmit}>
               <label className="label">
-                Title
+                <div className="has-text-white">Title</div>
                 <div className="control">
                   <input
                     type="text"
@@ -88,7 +90,7 @@ export function AddReview() {
                 </div>
               </label>
               <label className="label">
-                Body
+                <div className="has-text-white">Body</div>
                 <div className="control">
                   <textarea
                     placeholder="e.g. It was great to see that everyone was in a good mood!"
@@ -99,7 +101,7 @@ export function AddReview() {
                   />
                 </div>
               </label>
-              <div className="rating has-text-centered">
+              <div className="rating has-text-centered is-size-2">
                 <input
                   id="star-rating-1"
                   type="radio"

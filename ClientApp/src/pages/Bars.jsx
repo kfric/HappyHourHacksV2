@@ -15,7 +15,10 @@ function SingleBar({ bar }) {
 
   return (
     <li className="container m-2" key={bar.id}>
-      <Link to={`/details/${bar.id}`} className="box has-text-centered">
+      <Link
+        to={`/details/${bar.id}`}
+        className="box has-text-centered is-family-secondary has-background-grey"
+      >
         <p className="subtitle has-text-centered">{bar.name}</p>
         <span
           className="stars"
@@ -59,19 +62,13 @@ export function Bars() {
     [searchText]
   )
 
-  function handleLogOut() {
-    logout()
-    window.location.assign('bars')
-  }
-
   function handleRandomButton() {
     const random = Math.floor(Math.random() * bars.length + 1)
-    // push the user to '/Details/{random}
     window.location.assign(`/Details/${random}`)
   }
 
   return (
-    <>
+    <section className="hero is-fullheight">
       <div className="navbar is-fixed-top p-3 has-background-white-bis">
         <div className="field is-grouped pt-2">
           <a className="navbar-burger" onClick={navbarClick}>
@@ -79,61 +76,75 @@ export function Bars() {
             <span></span>
             <span></span>
           </a>
-          <div className="container mr-3">
-            <div className="control has-icons-left">
-              <input
-                className="input is-rounded"
-                type="text"
-                placeholder="Search..."
-                value={searchText}
-                onChange={function (event) {
-                  setSearchText(event.target.value)
-                }}
-              />
-              <span className="icon is small is-left">
-                <i className="fas fa-search"></i>
-              </span>
-            </div>
-          </div>
-          <div className="navbar-menu" id="nav-links">
-            <div className="navbar-start">
-              {isLoggedIn() ? null : (
-                <Link to="/" className="navbar-item">
-                  Sign in
-                </Link>
-              )}
-              {isLoggedIn() ? null : (
-                <Link to="/sign-up" className="navbar-item">
-                  Sign up
-                </Link>
-              )}
-              {isLoggedIn() ? (
-                <span className="navbar-item" onClick={handleLogOut}>
-                  Sign out
+          <div className="container">
+            <div className="container mr-3">
+              <div className="control has-icons-left">
+                <input
+                  className="input is-rounded"
+                  type="text"
+                  placeholder="Search..."
+                  value={searchText}
+                  onChange={function (event) {
+                    setSearchText(event.target.value)
+                  }}
+                />
+                <span className="icon is small is-left">
+                  <i className="fas fa-search"></i>
                 </span>
-              ) : null}
-              <a
-                href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
-                className="navbar-item"
-              >
-                About
-              </a>
+              </div>
+            </div>
+
+            <div className="navbar-menu" id="nav-links">
+              <div className="navbar-start">
+                {isLoggedIn() ? null : (
+                  <Link to="/" className="navbar-item">
+                    Sign in
+                  </Link>
+                )}
+                {isLoggedIn() ? null : (
+                  <Link to="/sign-up" className="navbar-item">
+                    Sign up
+                  </Link>
+                )}
+                {isLoggedIn() ? (
+                  <Link
+                    to="bars"
+                    className="navbar-item"
+                    onClick={function () {
+                      logout()
+                      window.location.assign('bars')
+                    }}
+                  >
+                    Sign out
+                  </Link>
+                ) : null}
+                <a
+                  href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
+                  className="navbar-item"
+                >
+                  About
+                </a>
+              </div>
             </div>
           </div>
-          {isLoggedIn() ? <p className="mr-3 mt-3">{user.fullName}</p> : null}
+          {isLoggedIn() ? (
+            <p className="userName mr-3 mt-3">{user.fullName}</p>
+          ) : null}
           {isLoggedIn() ? (
             <img src={user2} alt="user" className="user-img" />
           ) : null}
         </div>
       </div>
-      <section className="section is-fullheight mt-5">
-        <div className="subtitle has-text-centered m-5">Bars & Restaurants</div>
+      <section className="section is-fullheight pt-6 mt-6">
+        <div className="subtitle has-text-centered is-size-1 has-text-white">
+          Bars & Restaurants
+        </div>
         {isLoggedIn() ? (
           <ul className="container is-flex is-justify-content-center">
             <Link to="/add-bar">
               <li className="box has-background-primary m-2">
-                <p className="subtitle has-text-centered has-text-white">
-                  <i className="fas fa-plus"></i>
+                <p className="has-text-centered">
+                  <i className="fas fa-plus has-text-black is-size-3"></i>
                 </p>
               </li>
             </Link>
@@ -141,19 +152,19 @@ export function Bars() {
               className="box has-background-link m-2"
               onClick={handleRandomButton}
             >
-              <p className="subtitle has-text-centered has-text-white">
-                <i className="fas fa-random"></i>
+              <p className="has-text-centered">
+                <i className="fas fa-random has-text-black is-size-3"></i>
               </p>
             </li>
           </ul>
         ) : null}
-        <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
+        <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center mt-5">
           {bars.map((bar) => (
             <SingleBar key={bar.id} bar={bar} />
           ))}
         </ul>
       </section>
-    </>
+    </section>
   )
 }
 

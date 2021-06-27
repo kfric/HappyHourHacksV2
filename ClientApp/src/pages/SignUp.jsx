@@ -40,101 +40,82 @@ export function SignUp() {
 
   return (
     <section className="hero is-fullheight">
-      <div className="notification is-primary has-text-centered is-size-3">
+      <div className="hero is-primary has-text-centered is-size-1 has-text-weight-bold p-5 is-family-secondary">
         Happy Hour Hacks
       </div>
-      {/* <nav className="breadcrumb is-centered mt-4" aria-label="breadcrumbs">
-        <ul>
-          <li>
-            <Link to="/">Sign in</Link>
-          </li>
-          <li>
-            <Link to="/bars">Bars</Link>
-          </li>
-          <li className="is-active">
-            <a href="#" aria-current="page">
-              Sign up
-            </a>
-          </li>
-        </ul>
-      </nav> */}
-      <div className="has-text-centered is-size-4">Create an account</div>
+      <div className=" subtitle has-text-centered is-size-4 mt-5 has-text-white">
+        Create an account
+      </div>
       {errorMsg ? (
         <div className="notification is-danger has-text-centered">
           {errorMsg}
         </div>
       ) : null}
       <div className="container">
-        <div className="hero-body">
-          <div className="container">
-            <div className="columns is-centered">
-              <div className="column">
-                <form action=" className='box" onSubmit={handleFormSubmit}>
-                  <div className="field">
-                    <label className="label">
-                      Full name
-                      <div className="control">
-                        <input
-                          type="text"
-                          placeholder="e.g. harryp!55"
-                          className="input"
-                          value={newUser.fullName}
-                          name="fullName"
-                          onChange={handleStringFieldChange}
-                        />
-                      </div>
-                    </label>
-                    <label className="label">
-                      Email
-                      <div className="control">
-                        <input
-                          type="email"
-                          placeholder="e.g. Potts"
-                          className="input"
-                          value={newUser.email}
-                          name="email"
-                          onChange={handleStringFieldChange}
-                        />
-                      </div>
-                    </label>
-                    <label className="label">
-                      Password
-                      <div className="control">
-                        <input
-                          type="password"
-                          placeholder="*****"
-                          className="input"
-                          value={newUser.password}
-                          name="password"
-                          onChange={handleStringFieldChange}
-                        />
-                      </div>
-                    </label>
-                    <div className="container has-text-centered">
-                      <p className="control">
-                        <button className="button is-primary m-2">
-                          Submit
-                        </button>
-                      </p>
-                    </div>
-                    <div className="field is-grouped">
-                      <div className="control">
-                        <p>Already a member?</p>
-                      </div>
-                      <div className="control">
-                        <Link to="/">Sign in</Link>
-                      </div>
-                    </div>
+        <div className="columns is-centered">
+          <form action=" className='box" onSubmit={handleFormSubmit}>
+            <div className="field mt-5">
+              <label className="label has-text-white">
+                Full name
+                <div className="control">
+                  <input
+                    type="text"
+                    placeholder="e.g. Harry Plotter"
+                    className="input"
+                    value={newUser.fullName}
+                    name="fullName"
+                    onChange={handleStringFieldChange}
+                  />
+                </div>
+              </label>
+              <label className="label has-text-white">
+                Email
+                <div className="control">
+                  <input
+                    type="email"
+                    placeholder="e.g. Potts"
+                    className="input"
+                    value={newUser.email}
+                    name="email"
+                    onChange={handleStringFieldChange}
+                  />
+                </div>
+              </label>
+              <label className="label has-text-white">
+                Password
+                <div className="control">
+                  <input
+                    type="password"
+                    placeholder="*****"
+                    className="input"
+                    value={newUser.password}
+                    name="password"
+                    onChange={handleStringFieldChange}
+                  />
+                </div>
+              </label>
+              <div className="container has-text-centered">
+                <p className="control">
+                  <button className="button is-primary m-2">Submit</button>
+                </p>
+              </div>
+              <div className="is-flex is-justify-content-center mt-2">
+                <div className="field is-grouped">
+                  <div className="control">
+                    <p className="has-text-white">Already a member?</p>
                   </div>
-                  <div>
-                    <Link to="/bars">
-                      <p className="has-text-centered">Continue as guest</p>
-                    </Link>
+                  <div className="control">
+                    <Link to="/">Sign in</Link>
                   </div>
-                </form>
+                </div>
+              </div>
+              <div>
+                <Link to="/bars">
+                  <p className="has-text-centered">Continue as guest</p>
+                </Link>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </section>

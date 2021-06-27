@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom'
 import { getUser, isLoggedIn, logout } from '../auth'
 import ReactMapGL, { Marker, NavigationControl } from 'react-map-gl'
 
-import maps from '../images/maps.jpeg'
 import GCB from '../images/GCB.jpg'
 import GCB2 from '../images/GCB2.jpg'
 import user2 from '../images/user2.png'
@@ -48,11 +47,6 @@ export function Details() {
     fetchBar()
   }, [id])
 
-  function handleLogOut() {
-    logout()
-    window.location.assign('bars')
-  }
-
   const [viewport, setViewport] = useState({
     latitude: 27.77101804911986,
     longitude: -82.66090611749074,
@@ -90,9 +84,15 @@ export function Details() {
                   </Link>
                 )}
                 {isLoggedIn() ? (
-                  <span className="navbar-item" onClick={handleLogOut}>
+                  <Link
+                    to="bars"
+                    className="navbar-item"
+                    onClick={function () {
+                      logout()
+                    }}
+                  >
                     Sign out
-                  </span>
+                  </Link>
                 ) : null}
                 <a
                   href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
@@ -103,7 +103,9 @@ export function Details() {
               </div>
             </div>
           </div>
-          {isLoggedIn() ? <p className="mr-3 mt-3">{user.fullName}</p> : null}
+          {isLoggedIn() ? (
+            <p className="userName mr-3 mt-3">{user.fullName}</p>
+          ) : null}
           {isLoggedIn() ? (
             <img src={user2} alt="user" className="user-img" />
           ) : null}
@@ -118,13 +120,13 @@ export function Details() {
             <Link to="/bars">Bars</Link>
           </li>
           <li className="is-active">
-            <a href="#" aria-current="page">
+            <a href="#" aria-current="page" className="has-text-grey-light">
               Details
             </a>
           </li>
         </ul>
       </nav>
-      <div className="container is-size-4 has-text-centered m-5">
+      <div className="subtitle is-size-1 has-text-centered m-5 has-text-white">
         {bar.name}
         <p className="is-size-6">
           <span
@@ -135,7 +137,32 @@ export function Details() {
           ({bar.reviews.length})
         </p>
       </div>
-      <section className="section is-fullheight pt-0">
+      {isLoggedIn() ? (
+        <ul className="container is-flex is-justify-content-center">
+          <Link to={`/add-deal/${id}`}>
+            <li className="box m-2">
+              <p className="subtitle has-text-centered">
+                <i className="fas fa-plus has-text-black">Deal</i>
+              </p>
+            </li>
+          </Link>
+          <Link to={`/add-review/${id}`}>
+            <li className="box m-2">
+              <p className="subtitle has-text-centered">
+                <i className="fas fa-plus has-text-black">Review</i>
+              </p>
+            </li>
+          </Link>
+          <Link to="#">
+            <li className="box m-2">
+              <p className="subtitle has-text-centered">
+                <i className="fas fa-plus has-text-black">Image</i>
+              </p>
+            </li>
+          </Link>
+        </ul>
+      ) : null}
+      <section className="section is-fullheight pt-0 mt-5">
         <div className="container">
           <div className="tile is-ancestor">
             <div className="tile is-parent is-8 is-flex">
@@ -161,19 +188,23 @@ export function Details() {
               </ReactMapGL>
             </div>
             <div className="tile is-parent is-justify-content-space-evenly is-flex-direction-column">
-              <div className="tile is-child box notification is-primary">
-                Call
-              </div>
-              <div className="tile is-child box notification is-link">
-                Website
-              </div>
+              <a href={`tel:${bar.phone}`}>
+                <div className="tile is-child box notification is-primary has-text-centered has-text-weight-bold">
+                  Call
+                </div>
+              </a>
+              <Link to={`//${bar.website}`}>
+                <div className="tile is-child box notification is-link has-text-centered has-text-weight-bold">
+                  Website
+                </div>
+              </Link>
               {isLoggedIn() ? (
-                <div className="tile is-child box notification is-warning">
+                <div className="tile is-child box notification is-warning has-text-centered has-text-weight-bold">
                   Update
                 </div>
               ) : null}
               {isLoggedIn() ? (
-                <div className="tile is-child box notification is-danger">
+                <div className="tile is-child box notification is-danger has-text-centered has-text-weight-bold">
                   Delete
                 </div>
               ) : null}
@@ -181,8 +212,11 @@ export function Details() {
           </div>
           <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
             {bar.reviews.map((review) => (
-              <li className="box has-text-centered m-2" key={review.id}>
-                <p className="subtitle mb-0">{review.title}</p>
+              <li
+                className="box has-text-centered m-2 has-background-grey"
+                key={review.id}
+              >
+                <p className="subtitle mb-0 is-size-4">{review.title}</p>
                 <p className="is-size-7 has-text-centered mb-3">
                   <span
                     className="stars"
@@ -190,9 +224,9 @@ export function Details() {
                     ariel-label="Star rating of this location"
                   />
                 </p>
-                <p className="mb-3">{review.body}</p>
-                <p>by {review.user.fullName}</p>
-                <p className="is-size-7 has-text-right">
+                <p className="is-size-6 mb-3">{review.body}</p>
+                <p className="is-family-secondary">by {review.user.fullName}</p>
+                <p className="is-size-7">
                   <time>
                     {format(new Date(review.creationDate), dateFormat)}
                   </time>
@@ -202,8 +236,11 @@ export function Details() {
           </ul>
           <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
             {bar.deals.map((deal) => (
-              <li className="box has-text-centered m-2" key={deal.id}>
-                <p className="subtitle mb-0">
+              <li
+                className="box has-text-centered m-2 has-background-grey"
+                key={deal.id}
+              >
+                <p className="subtitle mb-0 is-size-4">
                   {deal.sunday ? 'Su, ' : null}
                   {deal.monday ? 'Mo, ' : null}
                   {deal.tuesday ? 'Tu, ' : null}
@@ -215,37 +252,37 @@ export function Details() {
                 <p className="is-size-7 has-text-centered mb-3">
                   {deal.start}-{deal.end}
                 </p>
-                <p className="mb-3">{deal.details}</p>
-                <p className="is-size-7 has-text-right">
+                <p className="is-size-6 mb-3">{deal.details}</p>
+                <p className="is-size-7">
                   <time>{format(new Date(deal.creationDate), dateFormat)}</time>
                 </p>
               </li>
             ))}
-            {isLoggedIn() ? (
-              <li className="box has-text-centered m-2">
-                <Link to={`/add-deal/${id}`}>
-                  <p>+ Deal</p>
-                </Link>
-              </li>
-            ) : null}
-            {isLoggedIn() ? (
-              <li className="box has-text-centered m-2">
-                <Link to={`/add-review/${id}`}>
-                  <p>+ Review</p>
-                </Link>
-              </li>
-            ) : null}
+            {/* {isLoggedIn() ? (
+              <ul>
+                <li className="box has-text-centered m-2">
+                  <Link to={`/add-deal/${id}`}>
+                    <p className="has-text-black">+ Deal</p>
+                  </Link>
+                </li>
+                <li className="box has-text-centered m-2">
+                  <Link to={`/add-review/${id}`}>
+                    <p className="has-text-black">+ Review</p>
+                  </Link>
+                </li>{' '}
+              </ul>
+            ) : null} */}
             <li>
               <img src={GCB} alt="bar" className="m-2" />
             </li>
             <li>
               <img src={GCB2} alt="bar" className="m-2" />
             </li>
-            {isLoggedIn() ? (
+            {/* {isLoggedIn() ? (
               <li className="box has-text-centered m-2">
                 <p>+ img</p>
               </li>
-            ) : null}
+            ) : null} */}
           </ul>
         </div>
       </section>

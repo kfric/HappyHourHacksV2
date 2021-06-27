@@ -54,13 +54,15 @@ export function AddBar() {
             <Link to="/bars">Bars</Link>
           </li>
           <li className="is-active">
-            <a href="#" aria-current="page">
+            <a href="#" aria-current="page" className="has-text-white">
               Add bar
             </a>
           </li>
         </ul>
       </nav>
-      <div className="subtitle has-text-centered">Add bar</div>
+      <div className="subtitle has-text-centered has-text-white is-size-3">
+        Add bar
+      </div>
       {errorMsg ? (
         <div className="notification is-danger has-text-centered">
           {errorMsg}
@@ -71,7 +73,7 @@ export function AddBar() {
           <div className="container">
             <form onSubmit={handleFormSubmit}>
               <label className="label">
-                Bar name
+                <div className="has-text-white">Bar name</div>
                 <div className="control">
                   <input
                     type="text"
@@ -84,7 +86,7 @@ export function AddBar() {
                 </div>
               </label>
               <label className="label">
-                Phone number
+                <div className="has-text-white">Phone number</div>
                 <div className="control">
                   <input
                     type="tel"
@@ -97,7 +99,7 @@ export function AddBar() {
                 </div>
               </label>
               <label className="label">
-                Address
+                <div className="has-text-white">Address</div>
                 <div className="control">
                   <input
                     type="text"
@@ -110,7 +112,7 @@ export function AddBar() {
                 </div>
               </label>
               <label className="label">
-                Website
+                <div className="has-text-white">Website</div>
                 <div className="control">
                   <input
                     type="text"
@@ -123,7 +125,7 @@ export function AddBar() {
                 </div>
               </label>
               <label className="label">
-                Style
+                <div className="has-text-white">Style</div>
                 <div className="control">
                   <select
                     className="button has-text-left"
@@ -162,7 +164,7 @@ export function AddBar() {
                   </select>
                 </div>
               </label>
-              <div className="field is-grouped">
+              <div className="field is-grouped mt-4">
                 <input
                   type="submit"
                   className="button is-primary"

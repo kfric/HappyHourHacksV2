@@ -63,22 +63,24 @@ export function AddDeal() {
   return (
     <div>
       <section className="hero is-fullheight">
-        <div className="notification is-primary has-text-centered is-size-3">
+        <div className="hero is-primary has-text-centered is-size-1 has-text-weight-bold p-5 is-family-secondary">
           Happy Hour Hacks
         </div>
-        <nav className="breadcrumb is-centered" aria-label="breadcrumbs">
+        <nav className="breadcrumb is-centered mt-5" aria-label="breadcrumbs">
           <ul>
             <li>
-              <Link to="/bars">Bars</Link>
+              <a href="javascript:history.back()">Bars</a>
             </li>
             <li className="is-active">
-              <a href="#" aria-current="page">
+              <a href="#" aria-current="page" className="has-text-white">
                 Add deal
               </a>
             </li>
           </ul>
         </nav>
-        <div className="subtitle has-text-centered">Add deal</div>
+        <div className="subtitle has-text-centered has-text-white is-size-3">
+          Add deal
+        </div>
         {errorMsg ? (
           <div className="notification is-danger">{errorMsg}</div>
         ) : null}
@@ -87,7 +89,7 @@ export function AddDeal() {
             <div className="container">
               <form onSubmit={handleFormSubmit}>
                 <label className="label">
-                  Details
+                  <div className="has-text-white">Details</div>
                   <div className="control">
                     <textarea
                       className="textarea"
@@ -100,7 +102,7 @@ export function AddDeal() {
                 </label>
                 <div className="field is-grouped is-flex is-justify-content-space-evenly mt-4">
                   <label className="label is-flex-direction-column">
-                    <div className="is-flex is-justify-content-center">
+                    <div className="is-flex is-justify-content-center has-text-white">
                       Start
                     </div>
                     <div className="control ml-4">
@@ -133,7 +135,9 @@ export function AddDeal() {
                     </div>
                   </label>
                   <label className="label is-flex-direction-column">
-                    <div className="is-flex is-justify-content-center">End</div>
+                    <div className="is-flex is-justify-content-center has-text-white">
+                      End
+                    </div>
                     <div className="control ml-4">
                       <select
                         className="button"
@@ -167,7 +171,7 @@ export function AddDeal() {
                 <label className="label">
                   <div className="field is-flex is-justify-content-space-evenly my-4">
                     <div className="label is-flex-direction-column">
-                      <div className="is-flex">Su</div>
+                      <div className="daysOfTheWeek is-flex">Su</div>
                       <input
                         type="checkbox"
                         className="checkbox"
@@ -175,7 +179,7 @@ export function AddDeal() {
                         onClick={handleCheckBoxClick}
                       />
                     </div>
-                    <div className="is-flex-direction-column">
+                    <div className="daysOfTheWeek is-flex-direction-column">
                       <div>Mo</div>
                       <input
                         type="checkbox"
@@ -184,7 +188,7 @@ export function AddDeal() {
                         onClick={handleCheckBoxClick}
                       />
                     </div>
-                    <div className="is-flex-direction-column">
+                    <div className="daysOfTheWeek is-flex-direction-column">
                       <div>Tu</div>
                       <input
                         type="checkbox"
@@ -193,7 +197,7 @@ export function AddDeal() {
                         onClick={handleCheckBoxClick}
                       />
                     </div>
-                    <div className="is-flex-direction-column">
+                    <div className="daysOfTheWeek is-flex-direction-column">
                       <div>We</div>
                       <input
                         type="checkbox"
@@ -202,7 +206,7 @@ export function AddDeal() {
                         onClick={handleCheckBoxClick}
                       />
                     </div>
-                    <div className="is-flex-direction-column">
+                    <div className="daysOfTheWeek is-flex-direction-column">
                       <div>Th</div>
                       <input
                         type="checkbox"
@@ -211,7 +215,7 @@ export function AddDeal() {
                         onClick={handleCheckBoxClick}
                       />
                     </div>
-                    <div className="is-flex-direction-column">
+                    <div className="daysOfTheWeek is-flex-direction-column">
                       <div>Fr</div>
                       <input
                         type="checkbox"
@@ -220,7 +224,7 @@ export function AddDeal() {
                         onClick={handleCheckBoxClick}
                       />
                     </div>
-                    <div className="is-flex-direction-column">
+                    <div className="daysOfTheWeek is-flex-direction-column">
                       <div>Sa</div>
                       <input
                         type="checkbox"
@@ -237,9 +241,14 @@ export function AddDeal() {
                     className="button is-primary"
                     value="Submit"
                   />
-                  <Link to="/bars" className="button is-danger">
+                  <div
+                    className="button is-danger"
+                    onClick={function () {
+                      history.goBack()
+                    }}
+                  >
                     Cancel
-                  </Link>
+                  </div>
                 </div>
               </form>
             </div>
