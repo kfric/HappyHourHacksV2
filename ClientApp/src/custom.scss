@@ -51,9 +51,12 @@ img {
   border-radius: 6px;
 }
 
-span {
-  cursor: pointer;
+.address-link:hover {
+  color: #e7bb41;
 }
+// span {
+//   cursor: pointer;
+// }
 
 .user-img {
   height: 2.5rem;

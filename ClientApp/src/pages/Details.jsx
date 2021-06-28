@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getUser, isLoggedIn, logout } from '../auth'
-import ReactMapGL, { Marker, NavigationControl } from 'react-map-gl'
+import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl'
 
 import GCB from '../images/GCB.jpg'
 import GCB2 from '../images/GCB2.jpg'
@@ -60,6 +60,8 @@ export function Details() {
   const averageStars =
     bar.reviews.length === 0 ? 0 : totalStars / bar.reviews.length
   const averageStarsToOneDecimalPlace = averageStars.toFixed(1)
+
+  const [selectedMapBar, setSelectedMapBar] = useState(null)
 
   return (
     <div className="container">
@@ -178,8 +180,33 @@ export function Details() {
                 >
                   <NavigationControl />
                 </div>
+
+                {selectedMapBar ? (
+                  <Popup
+                    latitude={selectedMapBar.latitude}
+                    longitude={selectedMapBar.longitude}
+                    closeButton={true}
+                    closeOnClick={false}
+                    onClose={() => setSelectedMapBar(null)}
+                    offsetTop={-5}
+                  >
+                    <div>
+                      <p>{selectedMapBar.name}</p>
+                      <a href={`http://maps.google.com/?q=${bar.address}`}>
+                        <p className="address-link is-size-7">
+                          {selectedMapBar.address}
+                        </p>
+                      </a>
+                    </div>
+                  </Popup>
+                ) : null}
+
                 <Marker latitude={bar.latitude} longitude={bar.longitude}>
-                  <span role="img" aria-label="pin">
+                  <span
+                    role="img"
+                    aria-label="pin"
+                    onClick={() => setSelectedMapBar(bar)}
+                  >
                     📍
                   </span>
                 </Marker>
