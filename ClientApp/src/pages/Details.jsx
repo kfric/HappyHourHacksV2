@@ -271,10 +271,22 @@ export function Details() {
               </ul>
             ) : null} */}
             <li>
-              <img src={GCB} alt="bar" className="m-2" />
+              <img
+                src={GCB}
+                alt="bar"
+                className="m-2"
+                height="400px"
+                width="400px"
+              />
             </li>
             <li>
-              <img src={GCB2} alt="bar" className="m-2" />
+              <img
+                src={GCB2}
+                alt="bar"
+                className="m-2"
+                height="400px"
+                width="400px"
+              />
             </li>
             {/* {isLoggedIn() ? (
               <li className="box has-text-centered m-2">
