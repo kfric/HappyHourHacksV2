@@ -82,6 +82,7 @@ export function AddBar() {
                     value={newBar.name}
                     name="name"
                     onChange={handleStringFieldChange}
+                    maxLength={35}
                   />
                 </div>
               </label>

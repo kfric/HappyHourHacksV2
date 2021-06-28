@@ -42,7 +42,7 @@ export function App() {
         </Route>
       </Switch>
       <div className="footer has-text-centered is-fixed-bottom pb-1 has-text-white">
-        <p>
+        <p className="has-text-white">
           Created by Karl Frick in St.Petersburg, FL{' '}
           <i className="fas fa-heart"></i>
         </p>

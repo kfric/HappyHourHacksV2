@@ -111,7 +111,9 @@ export function SignUp() {
               </div>
               <div>
                 <Link to="/bars">
-                  <p className="has-text-centered">Continue as guest</p>
+                  <p className="has-text-centered has-text-link">
+                    Continue as guest
+                  </p>
                 </Link>
               </div>
             </div>

@@ -111,10 +111,8 @@ export function Details() {
           ) : null}
         </div>
       </div>
-      <nav
-        className="breadcrumb is-centered mt-6 pt-6"
-        aria-label="breadcrumbs"
-      >
+      <div className="pt-6"></div>
+      <nav className="breadcrumb is-centered pt-6" aria-label="breadcrumbs">
         <ul>
           <li>
             <Link to="/bars">Bars</Link>
@@ -128,7 +126,7 @@ export function Details() {
       </nav>
       <div className="subtitle is-size-1 has-text-centered m-5 has-text-white">
         {bar.name}
-        <p className="is-size-6">
+        <p className="is-size-6 has-text-white">
           <span
             className="stars"
             style={{ '--rating': averageStarsToOneDecimalPlace }}
@@ -142,21 +140,21 @@ export function Details() {
           <Link to={`/add-deal/${id}`}>
             <li className="box m-2">
               <p className="subtitle has-text-centered">
-                <i className="fas fa-plus has-text-black">Deal</i>
+                <i className="fas fa-dollar-sign has-text-black px-2 is-size-3"></i>
               </p>
             </li>
           </Link>
           <Link to={`/add-review/${id}`}>
             <li className="box m-2">
               <p className="subtitle has-text-centered">
-                <i className="fas fa-plus has-text-black">Review</i>
+                <i className="fas fa-pencil-alt has-text-black is-size-3"></i>
               </p>
             </li>
           </Link>
           <Link to="#">
             <li className="box m-2">
               <p className="subtitle has-text-centered">
-                <i className="fas fa-plus has-text-black">Image</i>
+                <i className="fas fa-image has-text-black is-size-3"></i>
               </p>
             </li>
           </Link>
