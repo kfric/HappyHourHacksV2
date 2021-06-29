@@ -154,7 +154,7 @@ export function Details() {
               </p>
             </li>
           </Link>
-          <Link to="#">
+          <Link to={`/add-photo/${id}`}>
             <li className="box m-2">
               <p className="subtitle has-text-centered">
                 <i className="fas fa-image has-text-black is-size-3"></i>
@@ -300,8 +300,8 @@ export function Details() {
             ) : null} */}
           </ul>
           <ul>
-            {bar.photos.map((bar) => (
-              <li>
+            {bar.photos.map((photo) => (
+              <li key={photo.id}>
                 <img
                   alt="inside and outside of the bar"
                   className="m-2"

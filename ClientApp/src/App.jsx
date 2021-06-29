@@ -11,6 +11,7 @@ import { PageNotFound } from './pages/PageNotFound'
 import { AddReview } from './pages/AddReview'
 
 import './custom.scss'
+import { AddPhoto } from './pages/AddPhoto'
 
 export function App() {
   return (
@@ -36,6 +37,9 @@ export function App() {
         </Route>
         <Route exact path="/add-review/:id">
           <AddReview />
+        </Route>
+        <Route exact path="/add-photo/:id">
+          <AddPhoto />
         </Route>
         <Route exact path="*">
           <PageNotFound />
