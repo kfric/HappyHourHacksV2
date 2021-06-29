@@ -56,7 +56,7 @@ export function AddReview() {
       <nav className="breadcrumb is-centered mt-5" aria-label="breadcrumbs">
         <ul>
           <li>
-            <Link to="javascript:history.back()">Bars</Link>
+            <Link to="/bars">Bars</Link>
           </li>
           <li className="is-active">
             <a href="#" aria-current="page" className="has-text-white">

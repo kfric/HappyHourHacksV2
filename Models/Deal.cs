@@ -21,5 +21,8 @@ namespace HappyHourHacksV2.Models
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public int BarId { get; set; }
 
+        public int UserId { get; set; }
+        public User User { get; set; }
+
     }
 }

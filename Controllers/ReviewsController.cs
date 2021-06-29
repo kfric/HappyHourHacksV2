@@ -39,9 +39,10 @@ namespace HappyHourHacksV2.Controllers
         [HttpPost]
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
         public async Task<ActionResult<Review>> PostReview(Review review)
         {
+            review.UserId = GetCurrentUserId();
+
             // Indicate to the database context we want to add this new record
             _context.Reviews.Add(review);
             await _context.SaveChangesAsync();
@@ -49,6 +50,48 @@ namespace HappyHourHacksV2.Controllers
             // Return a response that indicates the object was created (status code `201`) and some additional
             // headers with details of the newly created object.
             return CreatedAtAction("GetReview", new { id = review.Id }, review);
+        }
+
+        // DELETE: api/Deals/5
+        //
+        // Deletes an individual deal with the requested id. The id is specified in the URL
+        // In the sample URL above it is the `5`. The "{id} in the [HttpDelete("{id}")] is what tells dotnet
+        // to grab the id from the URL. It is then made available to us as the `id` argument to the method.
+        //
+        [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
+        public async Task<IActionResult> DeleteReview(int id)
+        {
+            // Find this deal by looking for the specific id
+            var review = await _context.Reviews.FindAsync(id);
+            if (review == null)
+            {
+                // There wasn't a deal with that id so return a `404` not found
+                return NotFound();
+            }
+
+            if (review.UserId != GetCurrentUserId())
+            {
+                // Make a custom error response
+                var response = new
+                {
+                    status = 401,
+                    errors = new List<string>() { "Not Authorized" }
+                };
+
+                // Return our error with the custom response
+                return Unauthorized(response);
+            }
+
+            // Tell the database we want to remove this record
+            _context.Reviews.Remove(review);
+
+            // Tell the database to perform the deletion
+            await _context.SaveChangesAsync();
+
+            // Return a copy of the deleted data
+            return Ok(review);
         }
         private int GetCurrentUserId()
         {

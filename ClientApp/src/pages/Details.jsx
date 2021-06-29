@@ -67,10 +67,36 @@ export function Details() {
 
   const [selectedMapBar, setSelectedMapBar] = useState(null)
 
-  async function handleDelete(event) {
+  async function handleBarDelete(event) {
     event.preventDefault()
 
     const response = await fetch(`/api/Bars/${id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+    })
+
+    if (response.ok) {
+      history.push('/bars')
+    }
+  }
+
+  async function handleReviewDelete(event) {
+    event.preventDefault()
+
+    const response = await fetch(`/api/Reviews/${id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+    })
+
+    if (response.ok) {
+      history.push('/bars')
+    }
+  }
+
+  async function handleDealDelete(event) {
+    event.preventDefault()
+
+    const response = await fetch(`/api/Deals/${id}`, {
       method: 'DELETE',
       headers: { 'content-type': 'application/json', ...authHeader() },
     })
@@ -235,7 +261,7 @@ export function Details() {
               {bar.userId === getUserId() ? (
                 <div
                   className="tile is-child box notification is-danger has-text-centered has-text-weight-bold"
-                  onClick={handleDelete}
+                  onClick={handleBarDelete}
                 >
                   Delete
                 </div>
@@ -248,6 +274,12 @@ export function Details() {
                 className="box has-text-centered m-2 has-background-grey"
                 key={review.id}
               >
+                {bar.userId === getUserId() ? (
+                  <i
+                    className="fas fa-times-circle has-text-black is-flex is-justify-content-end"
+                    onClick={handleReviewDelete}
+                  ></i>
+                ) : null}
                 <p className="subtitle mb-0 is-size-4">{review.title}</p>
                 <p className="is-size-7 has-text-centered mb-3">
                   <span
@@ -272,6 +304,13 @@ export function Details() {
                 className="box has-text-centered m-2 has-background-grey"
                 key={deal.id}
               >
+                {bar.userId === getUserId() ? (
+                  <i
+                    className="fas fa-times-circle has-text-black is-flex is-justify-content-end"
+                    onClick={handleDealDelete}
+                  ></i>
+                ) : null}
+
                 <p className="subtitle mb-0 is-size-4">
                   {deal.sunday ? 'Su, ' : null}
                   {deal.monday ? 'Mo, ' : null}
