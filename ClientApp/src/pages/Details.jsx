@@ -31,6 +31,7 @@ export function Details() {
     longitude: 0,
     reviews: [],
     deals: [],
+    photos: [],
   })
 
   useEffect(() => {
@@ -297,7 +298,19 @@ export function Details() {
                 </li>{' '}
               </ul>
             ) : null} */}
-            <li>
+          </ul>
+          <ul>
+            {bar.photos.map((bar) => (
+              <li>
+                <img
+                  alt="inside and outside of the bar"
+                  className="m-2"
+                  height="400px"
+                  width="400px"
+                />
+              </li>
+            ))}
+            {/* <li>
               <img
                 src={GCB}
                 alt="bar"
@@ -314,7 +327,7 @@ export function Details() {
                 height="400px"
                 width="400px"
               />
-            </li>
+            </li> */}
             {/* {isLoggedIn() ? (
               <li className="box has-text-centered m-2">
                 <p>+ img</p>

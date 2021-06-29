@@ -44,7 +44,8 @@ namespace HappyHourHacksV2.Controllers
             if (filter == null)
             {
                 return await _context.Bars.OrderBy(row => row.Id).Include(bar => bar.Reviews).
-                                                                  Include(bar => bar.Deals).ToListAsync();
+                                                                  Include(bar => bar.Deals).
+                                                                  Include(bar => bar.Photos).ToListAsync();
             }
             else
             {
@@ -70,6 +71,8 @@ namespace HappyHourHacksV2.Controllers
             var bar = await _context.Bars.Include(bar => bar.Reviews).
                                           ThenInclude(review => review.User).
                                           Include(bar => bar.Deals).
+                                          Include(bar => bar.Photos).
+                                          ThenInclude(photo => photo.User).
                                           Where(bar => bar.Id == id).
                                           FirstOrDefaultAsync();
             // If we didn't find anything, we receive a `null` in return
