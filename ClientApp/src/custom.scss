@@ -29,8 +29,11 @@ body {
 }
 
 span,
-.userName,
 .daysOfTheWeek {
+  color: white;
+}
+
+.navbar-item {
   color: white;
 }
 
@@ -62,11 +65,6 @@ img {
 // span {
 //   cursor: pointer;
 // }
-
-.user-img {
-  height: 2.5rem;
-  border-radius: 100px;
-}
 
 .stars {
   --rating: 0;
