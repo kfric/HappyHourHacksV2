@@ -33,6 +33,7 @@ namespace HappyHourHacksV2.Controllers
         // Returns a list of all your Deals
         //
         [HttpGet]
+
         public async Task<ActionResult<IEnumerable<Deal>>> GetDeals()
         {
             // Uses the database context in `_context` to request all of the Deals, sort
@@ -128,6 +129,9 @@ namespace HappyHourHacksV2.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Deal>> PostDeal(Deal deal)
         {
+
+            deal.UserId = GetCurrentUserId();
+
             // Indicate to the database context we want to add this new record
             _context.Deals.Add(deal);
             await _context.SaveChangesAsync();
