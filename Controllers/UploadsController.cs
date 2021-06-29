@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using HappyHourHacksV2.Models;
 using System.Threading.Tasks;
-// added
 namespace HappyHourHacksV2.Controllers
 {
     // All of these routes will be at the base URL:     /api/Uploads
@@ -21,7 +19,7 @@ namespace HappyHourHacksV2.Controllers
     {
 
         // added
-        private readonly DatabaseContext _context;
+        // private readonly DatabaseContext _context;
 
         private readonly string CLOUDINARY_CLOUD_NAME;
         private readonly string CLOUDINARY_API_KEY;
@@ -29,7 +27,7 @@ namespace HappyHourHacksV2.Controllers
 
         // Constructor that receives a reference to your database context
         // and stores it in _context for you to use in your API methods
-        public UploadsController(DatabaseContext context, IConfiguration config)
+        public UploadsController(IConfiguration config)
         {
 
             CLOUDINARY_CLOUD_NAME = config["CLOUDINARY_CLOUD_NAME"];

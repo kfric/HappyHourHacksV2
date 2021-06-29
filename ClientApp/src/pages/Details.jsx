@@ -8,6 +8,7 @@ import GCB2 from '../images/GCB2.jpg'
 import user2 from '../images/user2.png'
 
 import format from 'date-fns/format'
+import { parseWithOptions } from 'date-fns/fp'
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 const user = getUser()
@@ -107,11 +108,11 @@ export function Details() {
             </div>
           </div>
           {isLoggedIn() ? (
-            <p className="userName mr-3 mt-3">{user.fullName}</p>
+            <p className="userName mr-3 mt-3">Hello, {user.fullName}</p>
           ) : null}
-          {isLoggedIn() ? (
+          {/* {isLoggedIn() ? (
             <img src={user2} alt="user" className="user-img" />
-          ) : null}
+          ) : null} */}
         </div>
       </div>
       <div className="pt-6"></div>
@@ -299,14 +300,15 @@ export function Details() {
               </ul>
             ) : null} */}
           </ul>
-          <ul>
+          <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
             {bar.photos.map((photo) => (
               <li key={photo.id}>
                 <img
-                  alt="inside and outside of the bar"
+                  src={photo.url}
+                  alt={photo.title}
                   className="m-2"
-                  height="400px"
-                  width="400px"
+                  height="300px"
+                  width="300px"
                 />
               </li>
             ))}

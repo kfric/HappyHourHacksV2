@@ -71,11 +71,11 @@ export function Bars() {
     <section className="hero is-fullheight">
       <div className="navbar is-fixed-top p-3 has-background-white-bis">
         <div className="field is-grouped pt-2">
-          <a className="navbar-burger" onClick={navbarClick}>
+          {/* <a className="navbar-burger" onClick={navbarClick}>
             <span></span>
             <span></span>
             <span></span>
-          </a>
+          </a> */}
           <div className="container">
             <div className="container mr-3">
               <div className="control has-icons-left">
@@ -93,8 +93,35 @@ export function Bars() {
                 </span>
               </div>
             </div>
-
-            <div className="navbar-menu" id="nav-links">
+            {isLoggedIn() ? null : (
+              <Link to="/" className="navbar-item">
+                Sign in
+              </Link>
+            )}
+            {isLoggedIn() ? null : (
+              <Link to="/sign-up" className="navbar-item">
+                Sign up
+              </Link>
+            )}
+            {isLoggedIn() ? (
+              <Link
+                to="bars"
+                className="navbar-item"
+                onClick={function () {
+                  logout()
+                  window.location.assign('bars')
+                }}
+              >
+                Sign out
+              </Link>
+            ) : null}
+            <a
+              href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
+              className="navbar-item"
+            >
+              About
+            </a>
+            {/* <div className="navbar-menu" id="nav-links">
               <div className="navbar-start">
                 {isLoggedIn() ? null : (
                   <Link to="/" className="navbar-item">
@@ -125,14 +152,14 @@ export function Bars() {
                   About
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
           {isLoggedIn() ? (
-            <p className="userName mr-3 mt-3">{user.fullName}</p>
+            <p className="userName mr-3 mt-3">Hello, {user.fullName}</p>
           ) : null}
-          {isLoggedIn() ? (
+          {/* {isLoggedIn() ? (
             <img src={user2} alt="user" className="user-img" />
-          ) : null}
+          ) : null} */}
         </div>
       </div>
       <section className="section is-fullheight pt-6 mt-6">

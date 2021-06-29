@@ -1,34 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
+import { useDropzone } from 'react-dropzone'
+
 import { authHeader } from '../auth'
 
 export function AddPhoto() {
   const params = useParams()
   const id = params.id
 
-  const [photo, setPhoto] = useState({
+  const [newPhoto, setNewPhoto] = useState({
     title: '',
+    url: '',
     barId: id,
+  })
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop: onDropFile,
   })
 
   const history = useHistory()
   const [errorMsg, setErrorMsg] = useState('')
+  const [isUploading, setIsUploading] = useState(false)
 
   function handleStringFieldChange(event) {
     const value = event.target.value
     const fieldName = event.target.name
 
-    const updatePhoto = { ...photo, [fieldName]: value }
-    setPhoto(updatePhoto)
+    const updateNewPhoto = { ...newPhoto, [fieldName]: value }
+    setNewPhoto(updateNewPhoto)
   }
 
   async function handleFormSubmit(event) {
     event.preventDefault()
 
-    const response = await fetch('/api/photos', {
+    const response = await fetch('/api/Photos', {
       method: 'POST',
       headers: { 'content-type': 'application/json', ...authHeader() },
-      body: JSON.stringify(photo),
+      body: JSON.stringify(newPhoto),
     })
     if (response.status === 401) {
       setErrorMsg('Not Authorized')
@@ -40,6 +48,61 @@ export function AddPhoto() {
         setErrorMsg(Object.values(json.errors).join(' '))
       }
     }
+  }
+
+  async function onDropFile(acceptedFiles) {
+    // Do something with the files
+    const fileToUpload = acceptedFiles[0]
+    console.log(fileToUpload)
+
+    setIsUploading(true)
+
+    // Create a formData object so we can send this
+    // to the API that is expecting som form data.
+    const formData = new FormData()
+
+    // Append a field that is the form upload itself
+    formData.append('file', fileToUpload)
+
+    try {
+      // Use fetch to send an authorization header and
+      // a body containing the form data with the file
+      const response = await fetch('/api/Uploads', {
+        method: 'POST',
+        headers: {
+          ...authHeader(),
+        },
+        body: formData,
+      })
+
+      // If we receive a 200 OK response, set the
+      // URL of the newPhoto in our state so that it is
+      // sent along when creating the restaurant,
+      // otherwise show an error
+      if (response.ok) {
+        const apiResponse = await response.json()
+
+        const url = apiResponse.url
+
+        setNewPhoto({ ...newPhoto, url: url })
+      } else {
+        setErrorMsg('Unable to upload image')
+      }
+    } catch {
+      // Catch any network errors and show the user we could not process their upload
+      setErrorMsg('Unable to upload image')
+    }
+    setIsUploading(false)
+  }
+
+  let dropZoneMessage = 'Drag a picture of the restaurant here to upload!'
+
+  if (isUploading) {
+    dropZoneMessage = 'Uploading...'
+  }
+
+  if (isDragActive) {
+    dropZoneMessage = 'Drop the files here ...'
   }
 
   return (
@@ -54,13 +117,13 @@ export function AddPhoto() {
           </li>
           <li className="is-active">
             <a href="#" aria-current="page" className="has-text-white">
-              Add photo
+              Add newPhoto
             </a>
           </li>
         </ul>
       </nav>
       <div className="subtitle has-text-centered has-text-white is-size-3">
-        Add photo
+        Add newPhoto
       </div>
       {errorMsg ? (
         <div className="notification is-danger">{errorMsg}</div>
@@ -78,15 +141,28 @@ export function AddPhoto() {
                     className="input"
                     name="title"
                     onChange={handleStringFieldChange}
-                    value={photo.title}
+                    value={newPhoto.title}
                     maxLength={35}
                   />
                 </div>
               </label>
               <label className="label">
-                <div className="has-text-white">Photo</div>
-                <div className="control">
-                  <input type="upload" />
+                <div className="has-text-white">newPhoto</div>
+                <div className="control has-text-centered">
+                  {newPhoto.url ? (
+                    <p>
+                      <img alt="Bar" width={200} src={newPhoto.url} />
+                    </p>
+                  ) : null}
+                  <div className="file-drop-zone uploading-box p-5">
+                    <div
+                      {...getRootProps()}
+                      className="has-text-black is-size-7 has-text-centered"
+                    >
+                      <input {...getInputProps()} />
+                      {dropZoneMessage}
+                    </div>
+                  </div>
                 </div>
               </label>
               {/* <div className="rating has-text-centered is-size-2">
@@ -95,7 +171,7 @@ export function AddPhoto() {
                   type="radio"
                   name="stars"
                   value="1"
-                  checked={photo.stars === 1}
+                  checked={newPhoto.stars === 1}
                   onChange={() => handleStarSelection(1)}
                 />
                 <label htmlFor="star-rating-1">1 star</label>
@@ -104,7 +180,7 @@ export function AddPhoto() {
                   type="radio"
                   name="stars"
                   value="2"
-                  checked={photo.stars === 2}
+                  checked={newPhoto.stars === 2}
                   onChange={() => handleStarSelection(2)}
                 />
                 <label htmlFor="star-rating-2">2 stars</label>
@@ -113,7 +189,7 @@ export function AddPhoto() {
                   type="radio"
                   name="stars"
                   value="3"
-                  checked={photo.stars === 3}
+                  checked={newPhoto.stars === 3}
                   onChange={() => handleStarSelection(3)}
                 />
                 <label htmlFor="star-rating-3">3 stars</label>
@@ -122,7 +198,7 @@ export function AddPhoto() {
                   type="radio"
                   name="stars"
                   value="4"
-                  checked={photo.stars === 4}
+                  checked={newPhoto.stars === 4}
                   onChange={() => handleStarSelection(4)}
                 />
                 <label htmlFor="star-rating-4">4 stars</label>
@@ -131,7 +207,7 @@ export function AddPhoto() {
                   type="radio"
                   name="stars"
                   value="5"
-                  checked={photo.stars === 5}
+                  checked={newPhoto.stars === 5}
                   onChange={() => handleStarSelection(5)}
                 />
                 <label htmlFor="star-rating-5">5 stars</label>

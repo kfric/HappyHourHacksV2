@@ -94,6 +94,7 @@ export function SignUp() {
                   />
                 </div>
               </label>
+
               <div className="container has-text-centered">
                 <p className="control">
                   <button className="button is-primary m-2">Submit</button>
