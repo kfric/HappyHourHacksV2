@@ -12,6 +12,7 @@ import { AddReview } from './pages/AddReview'
 
 import './custom.scss'
 import { AddPhoto } from './pages/AddPhoto'
+import { EditBar } from './pages/EditBar'
 
 export function App() {
   return (
@@ -31,6 +32,9 @@ export function App() {
         </Route>
         <Route exact path="/add-bar">
           <AddBar />
+        </Route>
+        <Route exact path="/edit-bar/:id/edit">
+          <EditBar />
         </Route>
         <Route exact path="/add-deal/:id">
           <AddDeal />

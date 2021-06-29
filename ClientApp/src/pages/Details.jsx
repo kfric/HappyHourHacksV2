@@ -253,10 +253,12 @@ export function Details() {
                   Website
                 </div>
               </Link>
-              {isLoggedIn() ? (
-                <div className="tile is-child box notification is-warning has-text-centered has-text-weight-bold">
-                  Update
-                </div>
+              {isLoggedIn() && bar.userId === getUserId() ? (
+                <Link to={`/edit-bar/${id}/edit`}>
+                  <div className="tile is-child box notification is-warning has-text-centered has-text-weight-bold">
+                    Edit
+                  </div>
+                </Link>
               ) : null}
               {bar.userId === getUserId() ? (
                 <div

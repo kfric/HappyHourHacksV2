@@ -98,12 +98,30 @@ namespace HappyHourHacksV2.Controllers
         // new values for the record.
         //
         [HttpPut("{id}")]
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
         public async Task<IActionResult> PutBar(int id, Bar bar)
         {
             // If the ID in the URL does not match the ID in the supplied request body, return a bad request
             if (id != bar.Id)
             {
                 return BadRequest();
+            }
+
+            // Find this restaurant by looking for the specific id
+            var barBelongsToUser = await _context.Bars.AnyAsync(bar => bar.Id == id && bar.UserId == GetCurrentUserId());
+            if (!barBelongsToUser)
+            {
+                // Make a custom error response
+                var response = new
+                {
+                    status = 401,
+                    errors = new List<string>() { "Not Authorized" }
+                };
+
+                // Return our error with the custom response
+                return Unauthorized(response);
             }
 
             // Tell the database to consider everything in bar to be _updated_ values. When
