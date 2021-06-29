@@ -28,6 +28,10 @@ body {
   font-family: 'Love Ya Like A Sister', cursive;
 }
 
+.tile:hover {
+  cursor: pointer;
+}
+
 span,
 .daysOfTheWeek {
   color: white;

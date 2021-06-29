@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { getUser, isLoggedIn, logout } from '../auth'
+import { Link, useHistory, useParams } from 'react-router-dom'
+import { authHeader, getUser, getUserId, isLoggedIn, logout } from '../auth'
 import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl'
 
 import GCB from '../images/GCB.jpg'
@@ -21,6 +21,8 @@ function navbarClick() {
 export function Details() {
   const params = useParams()
   const id = params.id
+
+  const history = useHistory()
 
   const [bar, setBar] = useState({
     name: '',
@@ -64,6 +66,19 @@ export function Details() {
   const averageStarsToOneDecimalPlace = averageStars.toFixed(1)
 
   const [selectedMapBar, setSelectedMapBar] = useState(null)
+
+  async function handleDelete(event) {
+    event.preventDefault()
+
+    const response = await fetch(`/api/Bars/${id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+    })
+
+    if (response.ok) {
+      history.push('/bars')
+    }
+  }
 
   return (
     <div className="container">
@@ -217,8 +232,11 @@ export function Details() {
                   Update
                 </div>
               ) : null}
-              {isLoggedIn() ? (
-                <div className="tile is-child box notification is-danger has-text-centered has-text-weight-bold">
+              {bar.userId === getUserId() ? (
+                <div
+                  className="tile is-child box notification is-danger has-text-centered has-text-weight-bold"
+                  onClick={handleDelete}
+                >
                   Delete
                 </div>
               ) : null}

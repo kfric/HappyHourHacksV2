@@ -33,10 +33,10 @@ function SingleBar({ bar }) {
 
 const user = getUser()
 
-function navbarClick() {
-  const navbarMenu = document.querySelector('#nav-links')
-  navbarMenu.classList.toggle('is-active')
-}
+// function navbarClick() {
+//   const navbarMenu = document.querySelector('#nav-links')
+//   navbarMenu.classList.toggle('is-active')
+// }
 
 export function Bars() {
   const [bars, setBars] = useState([])
