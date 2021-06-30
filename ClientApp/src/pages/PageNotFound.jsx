@@ -5,17 +5,19 @@ export function PageNotFound() {
   return (
     <div>
       <section className="hero is-fullheight">
-        <div className="notification is-primary has-text-centered is-size-3">
+        <div className="hero is-primary has-text-centered is-size-1 has-text-weight-bold p-5 is-family-secondary">
           Happy Hour Hacks
         </div>
-        <div className="has-text-centered is-size-4">404 Not Found</div>
+        <div className="has-text-centered is-size-4 has-text-white mt-5">
+          404 Not Found
+        </div>
         <div className="container">
           <div className="hero-body">
             <div className="container">
               <div className="columns is-centered">
                 <div className="column">
                   <form action=" className='box">
-                    <div className="field has-text-centered">
+                    <div className="field has-text-centered has-text-white">
                       Nothing here...
                     </div>
                     <div
@@ -36,5 +38,3 @@ export function PageNotFound() {
     </div>
   )
 }
-
-export default PageNotFound

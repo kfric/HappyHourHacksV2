@@ -93,11 +93,8 @@ export function SignUp() {
                   />
                 </div>
               </label>
-
               <div className="container has-text-centered">
-                <p className="control">
-                  <button className="button is-primary m-2">Submit</button>
-                </p>
+                <button className="button is-primary m-2">Submit</button>
               </div>
               <div className="is-flex is-justify-content-center mt-2">
                 <div className="field is-grouped">
@@ -123,5 +120,3 @@ export function SignUp() {
     </section>
   )
 }
-
-export default SignUp

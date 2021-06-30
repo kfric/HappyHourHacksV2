@@ -80,7 +80,7 @@ export function Details() {
     })
 
     if (response.ok) {
-      history.push('/bars')
+      history.goBack()
     }
   }
 
@@ -93,7 +93,7 @@ export function Details() {
     })
 
     if (response.ok) {
-      history.push('/bars')
+      history.goBack()
     }
   }
 
@@ -106,7 +106,7 @@ export function Details() {
     })
 
     if (response.ok) {
-      history.push('/bars')
+      history.goBack()
     }
   }
 
@@ -257,11 +257,11 @@ export function Details() {
                   Call
                 </div>
               </a>
-              <Link to={`//${bar.website}`}>
+              <a href={`//${bar.website}`}>
                 <div className="tile is-child box notification is-link has-text-centered has-text-weight-bold">
                   Website
                 </div>
-              </Link>
+              </a>
               {isLoggedIn() && bar.userId === getUserId() ? (
                 <Link to={`/edit-bar/${id}/edit`}>
                   <div className="tile is-child box notification is-warning has-text-centered has-text-weight-bold">
@@ -285,7 +285,7 @@ export function Details() {
                 className="box has-text-centered m-2 has-background-grey"
                 key={review.id}
               >
-                {bar.userId === getUserId() ? (
+                {bar.userId === getUserId() || review.userId === getUserId() ? (
                   <i
                     className="trash1 fas fa-trash-alt is-flex is-justify-content-start"
                     onClick={(event) => handleReviewDelete(event, review.id)}
@@ -315,7 +315,7 @@ export function Details() {
                 className="box has-text-centered m-2 has-background-grey"
                 key={deal.id}
               >
-                {bar.userId === getUserId() ? (
+                {bar.userId === getUserId() || deal.userId === getUserId() ? (
                   <i
                     className="trash1 fas fa-trash-alt is-flex is-justify-content-start"
                     onClick={(event) => handleDealDelete(event, deal.id)}
@@ -343,7 +343,7 @@ export function Details() {
           <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
             {bar.photos.map((photo) => (
               <li key={photo.id}>
-                {bar.userId === getUserId() ? (
+                {bar.userId === getUserId() || photo.userId === getUserId() ? (
                   <i
                     className="trash2 fas fa-trash-alt is-flex is-justify-content-end mt-4 ml-4"
                     onClick={(event) => handlePhotoDelete(event, photo.id)}
@@ -364,5 +364,3 @@ export function Details() {
     </div>
   )
 }
-
-export default Details

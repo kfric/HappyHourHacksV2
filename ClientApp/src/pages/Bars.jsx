@@ -31,11 +31,6 @@ function SingleBar({ bar }) {
 
 const user = getUser()
 
-// function navbarClick() {
-//   const navbarMenu = document.querySelector('#nav-links')
-//   navbarMenu.classList.toggle('is-active')
-// }
-
 export function Bars() {
   const [bars, setBars] = useState([])
   const [searchText, setSearchText] = useState('')
@@ -66,8 +61,22 @@ export function Bars() {
   }
 
   return (
-    <section className="container is-fullheight">
+    <section className="hero is-fullheight">
       <div className="navbar is-fixed-top p-3 has-background-white-bis">
+        <div className="control has-icons-left">
+          <input
+            className="input is-rounded"
+            type="text"
+            placeholder="Search..."
+            value={searchText}
+            onChange={function (event) {
+              setSearchText(event.target.value)
+            }}
+          />
+          <span className="icon is small is-left">
+            <i className="fas fa-search"></i>
+          </span>
+        </div>
         <div className="field is-grouped mr-6">
           {isLoggedIn() ? (
             <p className="navbar-item has-text-white">Hello, {user.fullName}</p>
@@ -96,30 +105,14 @@ export function Bars() {
           ) : null}
           <a
             href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
-            className="navbar-item mr-5"
+            className="navbar-item"
           >
             About
           </a>
         </div>
-        <div className="container">
-          <div className="control has-icons-left">
-            <input
-              className="input is-rounded"
-              type="text"
-              placeholder="Search..."
-              value={searchText}
-              onChange={function (event) {
-                setSearchText(event.target.value)
-              }}
-            />
-            <span className="icon is small is-left">
-              <i className="fas fa-search"></i>
-            </span>
-          </div>
-        </div>
       </div>
-      <div className="p-5"></div>
       <section className="section is-fullheight mt-5">
+        <div className="p-5"></div>
         <div className="subtitle has-text-centered is-size-1 has-text-white">
           Bars & Restaurants
         </div>
@@ -151,5 +144,3 @@ export function Bars() {
     </section>
   )
 }
-
-export default Bars

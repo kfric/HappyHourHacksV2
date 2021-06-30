@@ -31,12 +31,12 @@ export function SignIn() {
     if (apiResponse.status === 400) {
       setErrorMsg(Object.values(apiResponse.errors).join(' '))
     } else {
-      // TODO, record the login
-      // recordAuthentication(apiResponse)
       recordAuthentication(apiResponse)
       window.location.assign('bars')
     }
   }
+
+  console.log('Welcome')
 
   return (
     <section className="hero is-fullheight">
@@ -84,21 +84,23 @@ export function SignIn() {
               <div className="container has-text-centered">
                 <button className="button is-primary m-2">Login</button>
               </div>
-              <div className="field is-grouped">
-                <div className="control">
-                  <p className="has-text-white">New user?</p>
-                </div>
-                <div className="control">
-                  <Link to="/sign-up">Create an account</Link>
+              <div className="is-flex is-justify-content-center mt-2">
+                <div className="field is-grouped">
+                  <div className="control">
+                    <p className="has-text-white">New user?</p>
+                  </div>
+                  <div className="control">
+                    <Link to="/sign-up">Create an account</Link>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <Link to="/bars">
-                <p className="has-text-centered has-text-link">
-                  Continue as guest
-                </p>
-              </Link>
+              <div>
+                <Link to="/bars">
+                  <p className="has-text-centered has-text-link">
+                    Continue as guest
+                  </p>
+                </Link>
+              </div>
             </div>
           </form>
         </div>
@@ -106,5 +108,3 @@ export function SignIn() {
     </section>
   )
 }
-
-export default SignIn

@@ -98,6 +98,10 @@ img {
   color: #f4afb4;
 }
 
+.navbar {
+  display: block;
+}
+
 .stars {
   --rating: 0;
   --percent: calc(var(--rating) / 5 * 100%);
