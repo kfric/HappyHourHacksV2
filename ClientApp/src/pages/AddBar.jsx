@@ -184,5 +184,3 @@ export function AddBar() {
     </section>
   )
 }
-
-export default AddBar
