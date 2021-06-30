@@ -72,15 +72,22 @@ export function EditBar() {
       <div className="notification is-primary has-text-centered is-size-3">
         Happy Hour Hacks
       </div>
-      <nav className="breadcrumb is-centered" aria-label="breadcrumbs">
+      <nav className="breadcrumb is-centered mt-5" aria-label="breadcrumbs">
         <ul>
           <li>
-            <Link to="/bars">Bars</Link>
+            <div
+              className="link mr-4"
+              onClick={function () {
+                history.goBack()
+              }}
+            >
+              Bars
+            </div>
           </li>
           <li className="is-active">
-            <a href="#" aria-current="page" className="has-text-white">
+            <div aria-current="page" className="has-text-white ml-4">
               Edit bar
-            </a>
+            </div>
           </li>
         </ul>
       </nav>

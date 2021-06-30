@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import { authHeader } from '../auth'
 
 export function AddReview() {
@@ -56,12 +56,19 @@ export function AddReview() {
       <nav className="breadcrumb is-centered mt-5" aria-label="breadcrumbs">
         <ul>
           <li>
-            <Link to="/bars">Bars</Link>
+            <div
+              className="link mr-4"
+              onClick={function () {
+                history.goBack()
+              }}
+            >
+              Bars
+            </div>
           </li>
           <li className="is-active">
-            <a href="#" aria-current="page" className="has-text-white">
-              Leave review
-            </a>
+            <div aria-current="page" className="has-text-white ml-4">
+              Add review
+            </div>
           </li>
         </ul>
       </nav>

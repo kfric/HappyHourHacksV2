@@ -5,7 +5,7 @@ INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style") VALUES ('Bar
 INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style") VALUES ('The Avenue DTSP', '727-851-9531', '242 1st Ave N, St. Petersburg, FL 33701', 'theavenuedtsp.com', 'American');
 INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style") VALUES ('Five Bucks Drinkery', '727-896-5118', '247 Central Ave N, St. Petersburg, FL 33701', 'fivebucksdrinkery.com', 'American');
 
-INSERT INTO "Users" ("FullName", "Email", "HashedPassword") VALUES ('Karl', 'karlton55@yahoo.com', 'password');
+INSERT INTO "Users" ("FullName", "Email", "HashedPassword") VALUES ('Karl', 'karl@yahoo.com', 'xxxxx');
 
 INSERT INTO "Reviews" ("BarId", "Title", "Body", "Stars", "CreationDate", "UserId") VALUES (1, 'Friendly staff!', 'Everyone was v happy', 5, '2020-01-01 14:23:55', 1);
 INSERT INTO "Reviews" ("BarId", "Title", "Body", "Stars", "CreationDate", "UserId") VALUES (2, 'Clean bathrooms', 'They were cleeeeeean', 5, '2020-06-07 14:23:55', 1);

@@ -1,6 +1,5 @@
-import id from 'date-fns/esm/locale/id/index.js'
 import React, { useState } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { authHeader } from '../auth'
 
 export function AddDeal() {
@@ -69,12 +68,19 @@ export function AddDeal() {
         <nav className="breadcrumb is-centered mt-5" aria-label="breadcrumbs">
           <ul>
             <li>
-              <a href="javascript:history.back()">Bars</a>
+              <div
+                className="link mr-4"
+                onClick={function () {
+                  history.goBack()
+                }}
+              >
+                Bars
+              </div>
             </li>
             <li className="is-active">
-              <a href="#" aria-current="page" className="has-text-white">
+              <div aria-current="page" className="has-text-white ml-4">
                 Add deal
-              </a>
+              </div>
             </li>
           </ul>
         </nav>

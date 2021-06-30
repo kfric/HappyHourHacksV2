@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getUser, isLoggedIn, logout } from '../auth'
 
-import user2 from '../images/user2.png'
-
 function SingleBar({ bar }) {
   const totalStars = bar.reviews.reduce(
     (starRatingSum, review) => starRatingSum + review.stars,
@@ -68,7 +66,7 @@ export function Bars() {
   }
 
   return (
-    <section className="hero is-fullheight">
+    <section className="container is-fullheight">
       <div className="navbar is-fixed-top p-3 has-background-white-bis">
         <div className="field is-grouped mr-6">
           {isLoggedIn() ? (
@@ -98,7 +96,7 @@ export function Bars() {
           ) : null}
           <a
             href="https://github.com/kfric/HappyHourHacksV2/blob/master/README.md"
-            className="navbar-item"
+            className="navbar-item mr-5"
           >
             About
           </a>

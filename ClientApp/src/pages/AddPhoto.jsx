@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import { useDropzone } from 'react-dropzone'
 
 import { authHeader } from '../auth'
@@ -113,12 +113,19 @@ export function AddPhoto() {
       <nav className="breadcrumb is-centered mt-5" aria-label="breadcrumbs">
         <ul>
           <li>
-            <Link to="javascript:history.back()">Bars</Link>
+            <div
+              className="link mr-4"
+              onClick={function () {
+                history.goBack()
+              }}
+            >
+              Bars
+            </div>
           </li>
           <li className="is-active">
-            <a href="#" aria-current="page" className="has-text-white">
-              Add newPhoto
-            </a>
+            <div aria-current="page" className="has-text-white ml-4">
+              Add Photo
+            </div>
           </li>
         </ul>
       </nav>

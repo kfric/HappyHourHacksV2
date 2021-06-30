@@ -9,10 +9,10 @@ import { AddBar } from './pages/AddBar'
 import { AddDeal } from './pages/AddDeal'
 import { PageNotFound } from './pages/PageNotFound'
 import { AddReview } from './pages/AddReview'
-
-import './custom.scss'
 import { AddPhoto } from './pages/AddPhoto'
 import { EditBar } from './pages/EditBar'
+
+import './custom.scss'
 
 export function App() {
   return (

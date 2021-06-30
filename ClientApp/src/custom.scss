@@ -63,12 +63,40 @@ img {
   border-radius: 6px;
 }
 
+.trash1 {
+  color: #000;
+  position: absolute;
+  z-index: 1;
+}
+
+.trash1:hover {
+  cursor: pointer;
+  color: #44bba4;
+}
+
+.trash2 {
+  color: #000;
+  position: absolute;
+  z-index: 1;
+}
+
+.trash2:hover {
+  cursor: pointer;
+  color: #e7bb41;
+}
+
 .address-link:hover {
   color: #e7bb41;
 }
-// span {
-//   cursor: pointer;
-// }
+
+.link {
+  color: #e7bb41;
+}
+
+.link:hover {
+  cursor: pointer;
+  color: #f4afb4;
+}
 
 .stars {
   --rating: 0;

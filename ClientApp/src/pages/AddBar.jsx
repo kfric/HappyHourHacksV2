@@ -54,9 +54,9 @@ export function AddBar() {
             <Link to="/bars">Bars</Link>
           </li>
           <li className="is-active">
-            <a href="#" aria-current="page" className="has-text-white">
+            <div aria-current="page" className="has-text-white ml-3">
               Add bar
-            </a>
+            </div>
           </li>
         </ul>
       </nav>

@@ -3,20 +3,10 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 import { authHeader, getUser, getUserId, isLoggedIn, logout } from '../auth'
 import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl'
 
-import GCB from '../images/GCB.jpg'
-import GCB2 from '../images/GCB2.jpg'
-import user2 from '../images/user2.png'
-
 import format from 'date-fns/format'
-import { parseWithOptions } from 'date-fns/fp'
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 const user = getUser()
-
-function navbarClick() {
-  const navbarMenu = document.querySelector('#nav-links')
-  navbarMenu.classList.toggle('is-active')
-}
 
 export function Details() {
   const params = useParams()
@@ -35,6 +25,7 @@ export function Details() {
     reviews: [],
     deals: [],
     photos: [],
+    userId: '',
   })
 
   useEffect(() => {
@@ -80,10 +71,10 @@ export function Details() {
     }
   }
 
-  async function handleReviewDelete(event) {
+  async function handleReviewDelete(event, reviewId) {
     event.preventDefault()
 
-    const response = await fetch(`/api/Reviews/${id}`, {
+    const response = await fetch(`/api/Reviews/${reviewId}`, {
       method: 'DELETE',
       headers: { 'content-type': 'application/json', ...authHeader() },
     })
@@ -93,10 +84,23 @@ export function Details() {
     }
   }
 
-  async function handleDealDelete(event) {
+  async function handleDealDelete(event, dealId) {
     event.preventDefault()
 
-    const response = await fetch(`/api/Deals/${id}`, {
+    const response = await fetch(`/api/Deals/${dealId}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+    })
+
+    if (response.ok) {
+      history.push('/bars')
+    }
+  }
+
+  async function handlePhotoDelete(event, photoId) {
+    event.preventDefault()
+
+    const response = await fetch(`/api/Photos/${photoId}`, {
       method: 'DELETE',
       headers: { 'content-type': 'application/json', ...authHeader() },
     })
@@ -144,15 +148,22 @@ export function Details() {
         </div>
       </div>
       <div className="pt-6"></div>
-      <nav className="breadcrumb is-centered pt-6" aria-label="breadcrumbs">
+      <nav className="breadcrumb is-centered mt-5" aria-label="breadcrumbs">
         <ul>
           <li>
-            <Link to="/bars">Bars</Link>
+            <div
+              className="link mr-4"
+              onClick={function () {
+                history.goBack()
+              }}
+            >
+              Bars
+            </div>
           </li>
           <li className="is-active">
-            <a href="#" aria-current="page" className="has-text-grey-light">
+            <div aria-current="page" className="has-text-white ml-4">
               Details
-            </a>
+            </div>
           </li>
         </ul>
       </nav>
@@ -210,7 +221,6 @@ export function Details() {
                 >
                   <NavigationControl />
                 </div>
-
                 {selectedMapBar ? (
                   <Popup
                     latitude={selectedMapBar.latitude}
@@ -230,7 +240,6 @@ export function Details() {
                     </div>
                   </Popup>
                 ) : null}
-
                 <Marker latitude={bar.latitude} longitude={bar.longitude}>
                   <span
                     role="img"
@@ -278,8 +287,8 @@ export function Details() {
               >
                 {bar.userId === getUserId() ? (
                   <i
-                    className="fas fa-times-circle has-text-black is-flex is-justify-content-end"
-                    onClick={handleReviewDelete}
+                    className="trash1 fas fa-trash-alt is-flex is-justify-content-start"
+                    onClick={(event) => handleReviewDelete(event, review.id)}
                   ></i>
                 ) : null}
                 <p className="subtitle mb-0 is-size-4">{review.title}</p>
@@ -308,11 +317,10 @@ export function Details() {
               >
                 {bar.userId === getUserId() ? (
                   <i
-                    className="fas fa-times-circle has-text-black is-flex is-justify-content-end"
-                    onClick={handleDealDelete}
+                    className="trash1 fas fa-trash-alt is-flex is-justify-content-start"
+                    onClick={(event) => handleDealDelete(event, deal.id)}
                   ></i>
                 ) : null}
-
                 <p className="subtitle mb-0 is-size-4">
                   {deal.sunday ? 'Su, ' : null}
                   {deal.monday ? 'Mo, ' : null}
@@ -331,24 +339,16 @@ export function Details() {
                 </p>
               </li>
             ))}
-            {/* {isLoggedIn() ? (
-              <ul>
-                <li className="box has-text-centered m-2">
-                  <Link to={`/add-deal/${id}`}>
-                    <p className="has-text-black">+ Deal</p>
-                  </Link>
-                </li>
-                <li className="box has-text-centered m-2">
-                  <Link to={`/add-review/${id}`}>
-                    <p className="has-text-black">+ Review</p>
-                  </Link>
-                </li>{' '}
-              </ul>
-            ) : null} */}
           </ul>
           <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center">
             {bar.photos.map((photo) => (
               <li key={photo.id}>
+                {bar.userId === getUserId() ? (
+                  <i
+                    className="trash2 fas fa-trash-alt is-flex is-justify-content-end mt-4 ml-4"
+                    onClick={(event) => handlePhotoDelete(event, photo.id)}
+                  ></i>
+                ) : null}
                 <img
                   src={photo.url}
                   alt={photo.title}
@@ -358,29 +358,6 @@ export function Details() {
                 />
               </li>
             ))}
-            {/* <li>
-              <img
-                src={GCB}
-                alt="bar"
-                className="m-2"
-                height="400px"
-                width="400px"
-              />
-            </li>
-            <li>
-              <img
-                src={GCB2}
-                alt="bar"
-                className="m-2"
-                height="400px"
-                width="400px"
-              />
-            </li> */}
-            {/* {isLoggedIn() ? (
-              <li className="box has-text-centered m-2">
-                <p>+ img</p>
-              </li>
-            ) : null} */}
           </ul>
         </div>
       </section>
