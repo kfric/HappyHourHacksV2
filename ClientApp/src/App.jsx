@@ -51,8 +51,18 @@ export function App() {
       </Switch>
       <div className="footer has-text-centered is-fixed-bottom pb-1 has-text-white">
         <p className="has-text-white">
-          Created by Karl Frick in St.Petersburg, FL{' '}
-          <i className="fas fa-heart"></i>
+          Created with
+          <i className="fas fa-heart mx-2"></i>
+          Karl Frick in St.Petersburg, FL
+          <a href="https://github.com/kfric">
+            <i
+              href="https://github.com/kfric"
+              className="fab fa-github mx-2 is-size-4"
+            ></i>
+          </a>
+          <a href="https://www.linkedin.com/in/karl-frick-8768b5109/">
+            <i className="fab fa-linkedin mx-2 is-size-4"></i>
+          </a>
         </p>
       </div>
     </>

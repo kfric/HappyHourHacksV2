@@ -36,7 +36,10 @@ export function SignIn() {
     }
   }
 
-  console.log('Welcome')
+  console.log(
+    '%c I had a feeling you were going to dig around..... Hire me!',
+    'color: black; background:yellow'
+  )
 
   return (
     <section className="hero is-fullheight">

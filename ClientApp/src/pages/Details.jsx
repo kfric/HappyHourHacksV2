@@ -48,6 +48,8 @@ export function Details() {
     zoom: 9,
   })
 
+  const [selectedMapBar, setSelectedMapBar] = useState(null)
+
   const totalStars = bar.reviews.reduce(
     (starRatingSum, review) => starRatingSum + review.stars,
     0
@@ -55,8 +57,6 @@ export function Details() {
   const averageStars =
     bar.reviews.length === 0 ? 0 : totalStars / bar.reviews.length
   const averageStarsToOneDecimalPlace = averageStars.toFixed(1)
-
-  const [selectedMapBar, setSelectedMapBar] = useState(null)
 
   async function handleBarDelete(event) {
     event.preventDefault()
@@ -209,8 +209,10 @@ export function Details() {
             <div className="tile is-parent is-8 is-flex">
               <ReactMapGL
                 {...viewport}
+                className="map"
                 onViewportChange={setViewport}
                 style={{ position: 'static' }}
+                mapStyle="mapbox://styles/karl-f/ckr3s3iey08ku18qo3n3yzfsd"
                 width="696px"
                 height="256px"
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getUser, isLoggedIn, logout } from '../auth'
+import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl'
 
 function SingleBar({ bar }) {
   const totalStars = bar.reviews.reduce(
@@ -34,6 +35,12 @@ const user = getUser()
 export function Bars() {
   const [bars, setBars] = useState([])
   const [searchText, setSearchText] = useState('')
+  const [viewport, setViewport] = useState({
+    latitude: 27.85048418256799,
+    longitude: -82.57058480545466,
+    zoom: 9,
+  })
+  const [selectedMapBar, setSelectedMapBar] = useState(null)
 
   useEffect(
     function () {
@@ -135,6 +142,64 @@ export function Bars() {
             </li>
           </ul>
         ) : null}
+
+        <div className="container mt-5">
+          <ReactMapGL
+            {...viewport}
+            className="map"
+            onViewportChange={setViewport}
+            style={{ position: 'static' }}
+            mapStyle="mapbox://styles/karl-f/ckr3s3iey08ku18qo3n3yzfsd"
+            width="100%"
+            height="256px"
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          >
+            <div style={{ position: 'absolute', left: 10 }} className="mt-2">
+              <NavigationControl />
+            </div>
+
+            {selectedMapBar ? (
+              <Popup
+                className="popup"
+                latitude={selectedMapBar.latitude}
+                longitude={selectedMapBar.longitude}
+                closeButton={true}
+                closeOnClick={false}
+                onClose={() => setSelectedMapBar(null)}
+                offsetTop={-5}
+              >
+                <div>
+                  <Link to={`/details/${selectedMapBar.id}`}>
+                    <p>{selectedMapBar.name}</p>
+                  </Link>
+                  <a
+                    href={`http://maps.google.com/?q=${selectedMapBar.address}`}
+                  >
+                    <p className="address-link is-size-7">
+                      {selectedMapBar.address}
+                    </p>
+                  </a>
+                </div>
+              </Popup>
+            ) : null}
+            {bars.map((bar) => (
+              <Marker
+                key={bar.id}
+                latitude={bar.latitude}
+                longitude={bar.longitude}
+              >
+                <span
+                  role="img"
+                  aria-label="pin"
+                  onClick={() => setSelectedMapBar(bar)}
+                >
+                  📍
+                </span>
+              </Marker>
+            ))}
+          </ReactMapGL>
+        </div>
+
         <ul className="container is-flex is-flex-wrap-wrap is-justify-content-center mt-5">
           {bars.map((bar) => (
             <SingleBar key={bar.id} bar={bar} />

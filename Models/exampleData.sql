@@ -1,9 +1,9 @@
 TRUNCATE TABLE "Bars", "Reviews", "Deals", "Users", "Photos" RESTART IDENTITY;
 
-INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style") VALUES ('MacDinton''s', '727-201-9783', '242 1st Ave N, St. Petersburg, FL 33701', 'macdintons.com', 'Irish Pub');
-INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style") VALUES ('Bar Louie', '813-519-1900', '2223 N Westshore Blvd Suite B - 202, Tampa, FL 33607', 'barlouie.com', 'American');
-INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style") VALUES ('The Avenue DTSP', '727-851-9531', '242 1st Ave N, St. Petersburg, FL 33701', 'theavenuedtsp.com', 'American');
-INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style") VALUES ('Five Bucks Drinkery', '727-896-5118', '247 Central Ave N, St. Petersburg, FL 33701', 'fivebucksdrinkery.com', 'American');
+INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style", "UserId", "Latitude", "Longitude") VALUES ('MacDinton''s', '727-201-9783', '242 1st Ave N, St. Petersburg, FL 33701', 'macdintons.com', 'Irish Pub', 1, 27.771799, -82.636368);
+INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style", "UserId", "Latitude", "Longitude") VALUES ('Bar Louie', '813-519-1900', '2223 N Westshore Blvd Suite B - 202, Tampa, FL 33607', 'barlouie.com', 'American', 1, 27.959560, -82.524040);
+INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style", "UserId", "Latitude", "Longitude") VALUES ('The Avenue DTSP', '727-851-9531', '330 1st Ave S, St. Petersburg, FL 33701', 'theavenuedtsp.com', 'American', 1, 27.770041, -82.637650);
+INSERT INTO "Bars" ("Name", "Phone", "Address", "Website", "Style", "UserId", "Latitude", "Longitude") VALUES ('Five Bucks Drinkery', '727-896-5118', '247 Central Ave N, St. Petersburg, FL 33701', 'fivebucksdrinkery.com', 'American', 1, 27.771260, -82.636800);
 
 INSERT INTO "Users" ("FullName", "Email", "HashedPassword") VALUES ('Karl', 'karl@yahoo.com', 'xxxxx');
 
