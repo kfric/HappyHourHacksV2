@@ -15,5 +15,7 @@ Details page has fully functional: add deal, add review, add picture, call locat
 ![Screen Shot 2021-07-14 at 12 10 44 PM](https://user-images.githubusercontent.com/80732054/125657203-01304f9d-75b1-49cc-a2f9-fe68d60918de.png)
 
 Wesbite - happyhourhacks.herokuapp.com/
+
 Geocodeing.Core - https://github.com/chadly/Geocoding.net
+
 mapbox - https://www.mapbox.com
