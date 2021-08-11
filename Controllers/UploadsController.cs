@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
+
 namespace HappyHourHacksV2.Controllers
 {
     // All of these routes will be at the base URL:     /api/Uploads
@@ -17,10 +18,6 @@ namespace HappyHourHacksV2.Controllers
     [ApiController]
     public class UploadsController : ControllerBase
     {
-
-        // added
-        // private readonly DatabaseContext _context;
-
         private readonly string CLOUDINARY_CLOUD_NAME;
         private readonly string CLOUDINARY_API_KEY;
         private readonly string CLOUDINARY_API_SECRET;

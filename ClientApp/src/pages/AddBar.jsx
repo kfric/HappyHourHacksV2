@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { authHeader } from '../auth'
+import { useDropzone } from 'react-dropzone'
 
 export function AddBar() {
   const [newBar, setNewBar] = useState({
@@ -9,10 +10,15 @@ export function AddBar() {
     address: '',
     website: '',
     style: '',
+    photoURL: '',
   })
 
   const history = useHistory()
   const [errorMsg, setErrorMsg] = useState('')
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop: onDropFile,
+  })
+  const [isUploading, setIsUploading] = useState(false)
 
   function handleStringFieldChange(event) {
     const value = event.target.value
@@ -41,6 +47,61 @@ export function AddBar() {
         setErrorMsg(Object.values(json.errors).join(' '))
       }
     }
+  }
+
+  async function onDropFile(acceptedFiles) {
+    // Do something with the files
+    const fileToUpload = acceptedFiles[0]
+    console.log(fileToUpload)
+
+    setIsUploading(true)
+
+    // Create a formData object so we can send this
+    // to the API that is expecting som form data.
+    const formData = new FormData()
+
+    // Append a field that is the form upload itself
+    formData.append('file', fileToUpload)
+
+    try {
+      // Use fetch to send an authorization header and
+      // a body containing the form data with the file
+      const response = await fetch('/api/Uploads', {
+        method: 'POST',
+        headers: {
+          ...authHeader(),
+        },
+        body: formData,
+      })
+
+      // If we receive a 200 OK response, set the
+      // URL of the newPhoto in our state so that it is
+      // sent along when creating the restaurant,
+      // otherwise show an error
+      if (response.ok) {
+        const apiResponse = await response.json()
+
+        const url = apiResponse.url
+
+        setNewBar({ ...newBar, photoURL: url })
+      } else {
+        setErrorMsg('Unable to upload image')
+      }
+    } catch {
+      // Catch any network errors and show the user we could not process their upload
+      setErrorMsg('Unable to upload image')
+    }
+    setIsUploading(false)
+  }
+
+  let dropZoneMessage = 'Drag a picture of the restaurant here to upload!'
+
+  if (isUploading) {
+    dropZoneMessage = 'Uploading...'
+  }
+
+  if (isDragActive) {
+    dropZoneMessage = 'Drop the files here ...'
   }
 
   return (
@@ -163,6 +224,29 @@ export function AddBar() {
                     <option value="Vietnamese">Vietnamese</option>
                     <option value="Other">Other</option>
                   </select>
+                </div>
+              </label>
+              <label className="label">
+                <div className="has-text-white">New Photo</div>
+                <div className="control has-text-centered">
+                  {newBar.photoURL ? (
+                    <p>
+                      <img
+                        alt="uploaded file"
+                        width={200}
+                        src={newBar.photoURL}
+                      />
+                    </p>
+                  ) : null}
+                  <div className="file-drop-zone uploading-box p-5">
+                    <div
+                      {...getRootProps()}
+                      className="has-text-black is-size-7 has-text-centered"
+                    >
+                      <input {...getInputProps()} />
+                      {dropZoneMessage}
+                    </div>
+                  </div>
                 </div>
               </label>
               <div className="field is-grouped mt-4">

@@ -26,6 +26,8 @@ namespace HappyHourHacksV2.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
+        public string PhotoURL { get; set; }
+
         public List<Review> Reviews { get; set; }
         public List<Deal> Deals { get; set; }
         public List<Photo> Photos { get; set; }

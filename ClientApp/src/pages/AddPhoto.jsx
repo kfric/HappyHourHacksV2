@@ -130,7 +130,7 @@ export function AddPhoto() {
         </ul>
       </nav>
       <div className="subtitle has-text-centered has-text-white is-size-3">
-        Add newPhoto
+        Add New Photo
       </div>
       {errorMsg ? (
         <div className="notification is-danger">{errorMsg}</div>
@@ -154,7 +154,7 @@ export function AddPhoto() {
                 </div>
               </label>
               <label className="label">
-                <div className="has-text-white">newPhoto</div>
+                <div className="has-text-white">New Photo</div>
                 <div className="control has-text-centered">
                   {newPhoto.url ? (
                     <p>

@@ -18,13 +18,23 @@ function SingleBar({ bar }) {
         to={`/details/${bar.id}`}
         className="box has-text-centered is-family-secondary has-background-grey"
       >
-        <p className="subtitle has-text-centered">{bar.name}</p>
+        <p className="subtitle has-text-centered m-0">{bar.name}</p>
         <span
           className="stars"
           style={{ '--rating': averageStarsToOneDecimalPlace }}
           ariel-label={`Star rating of this location is ${averageStarsToOneDecimalPlace} out of 5.`}
         />
         ({averageStarsToOneDecimalPlace})
+        {bar.photoURL ? (
+          <p>
+            <img
+              alt="Bar store front"
+              width={200}
+              src={bar.photoURL}
+              className="mt-2"
+            />
+          </p>
+        ) : null}
       </Link>
     </li>
   )
